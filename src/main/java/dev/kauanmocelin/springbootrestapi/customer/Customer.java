@@ -1,16 +1,16 @@
 package dev.kauanmocelin.springbootrestapi.customer;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.Period;
 
-@AllArgsConstructor
-@Data
+@NoArgsConstructor
+@ToString
+@Getter
 @Entity
 public class Customer {
     @Id
@@ -19,5 +19,17 @@ public class Customer {
     private String name;
     private String email;
     private LocalDate dateOfBirth;
+    @Transient
+    private Integer age;
+
+    public Customer(String name, String email, LocalDate dateOfBirth) {
+        this.name = name;
+        this.email = email;
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public Integer getAge() {
+        return Period.between(this.dateOfBirth, LocalDate.now()).getYears();
+    }
 }
 

@@ -1,16 +1,17 @@
 package dev.kauanmocelin.springbootrestapi.customer;
 
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
-import java.time.Month;
 import java.util.List;
 
 @Service
+@AllArgsConstructor
 public class CustomerService {
+
+    private final CustomerRepository customerRepository;
+
     public List<Customer> getCustomers() {
-        return List.of(
-                new Customer(1L, "Maria", "maria@gmail.com", LocalDate.of(2000, Month.JANUARY, 1))
-        );
+        return customerRepository.findAll();
     }
 }
