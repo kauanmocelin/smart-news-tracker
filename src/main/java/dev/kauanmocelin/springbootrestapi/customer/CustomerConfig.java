@@ -6,7 +6,6 @@ import org.springframework.context.annotation.Configuration;
 
 import java.time.LocalDate;
 import java.time.Month;
-import java.util.List;
 
 @Configuration
 public class CustomerConfig {
@@ -25,7 +24,7 @@ public class CustomerConfig {
                     LocalDate.of(1998, Month.DECEMBER, 10)
             );
 
-            customerRepository.saveAll(List.of(maria, alex));
+            //customerRepository.saveAll(List.of(maria, alex));
         };
     }
 }

@@ -2,6 +2,7 @@ package dev.kauanmocelin.springbootrestapi.customer;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
@@ -11,6 +12,7 @@ import java.time.Period;
 @NoArgsConstructor
 @ToString
 @Getter
+@Setter
 @Entity
 public class Customer {
     @Id
