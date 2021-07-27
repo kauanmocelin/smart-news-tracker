@@ -1,5 +1,7 @@
 package dev.kauanmocelin.springbootrestapi.customer;
 
+import dev.kauanmocelin.springbootrestapi.customer.request.CustomerPostRequestBody;
+import dev.kauanmocelin.springbootrestapi.customer.request.CustomerPutRequestBody;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,8 +20,8 @@ public class CustomerController {
     }
 
     @PostMapping
-    public void registerNewCustomer(@RequestBody Customer customer) {
-        customerService.addNewCustomer(customer);
+    public void registerNewCustomer(@RequestBody CustomerPostRequestBody customerPostRequestBody) {
+        customerService.addNewCustomer(customerPostRequestBody);
     }
 
     @DeleteMapping(path = "{customerId}")
@@ -28,10 +30,7 @@ public class CustomerController {
     }
 
     @PutMapping(path = "{customerId}")
-    public void updateCustomer(
-            @PathVariable("customerId") Long customerId,
-            @RequestParam(required = false) String name,
-            @RequestParam(required = false) String email) {
-        customerService.updateCustomer(customerId, name, email);
+    public void updateCustomer(@PathVariable("customerId") Long customerId, @RequestBody CustomerPutRequestBody customerPutRequestBody) {
+        customerService.updateCustomer(customerId, customerPutRequestBody);
     }
 }

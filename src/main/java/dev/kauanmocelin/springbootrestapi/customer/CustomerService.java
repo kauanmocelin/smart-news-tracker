@@ -1,16 +1,16 @@
 package dev.kauanmocelin.springbootrestapi.customer;
 
-import lombok.AllArgsConstructor;
+import dev.kauanmocelin.springbootrestapi.customer.mapper.CustomerMapper;
+import dev.kauanmocelin.springbootrestapi.customer.request.CustomerPostRequestBody;
+import dev.kauanmocelin.springbootrestapi.customer.request.CustomerPutRequestBody;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.StringUtils;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class CustomerService {
 
     private final CustomerRepository customerRepository;
@@ -19,12 +19,12 @@ public class CustomerService {
         return customerRepository.findAll();
     }
 
-    public void addNewCustomer(Customer customer) {
-        Optional<Customer> customerOptional = customerRepository.findCustomerByEmail(customer.getEmail());
+    public void addNewCustomer(CustomerPostRequestBody customerPostRequestBody) {
+        Optional<Customer> customerOptional = customerRepository.findCustomerByEmail(customerPostRequestBody.getEmail());
         if (customerOptional.isPresent()) {
             throw new IllegalStateException("email taken");
         }
-        customerRepository.save(customer);
+        customerRepository.save(CustomerMapper.INSTANCE.toCustomer(customerPostRequestBody));
     }
 
     public void deleteCustomer(Long customerId) {
@@ -35,25 +35,21 @@ public class CustomerService {
         customerRepository.deleteById(customerId);
     }
 
-    @Transactional
-    public void updateCustomer(Long customerId, String name, String email) {
-        Customer customer = customerRepository.findById(customerId)
-                .orElseThrow(() -> new IllegalStateException(
-                        "customer with id " + customerId + " does not exists"));
+    public void updateCustomer(Long customerId, CustomerPutRequestBody customerPutRequestBody) {
+        Customer savedCustomer = findByIdOrThrowIllegalStateException(customerId);
 
-        if (StringUtils.hasLength(name) &&
-                !Objects.equals(customer.getName(), name)) {
-            customer.setName(name);
+        Optional<Customer> customerOptional = customerRepository.findCustomerByEmail(customerPutRequestBody.getEmail());
+        if (customerOptional.isPresent() && !customerOptional.get().getId().equals(savedCustomer.getId())) {
+            throw new IllegalStateException("email taken");
         }
 
-        if (StringUtils.hasLength(email) &&
-                !Objects.equals(customer.getEmail(), email)) {
+        Customer customer = CustomerMapper.INSTANCE.toCustomer(customerPutRequestBody);
+        customer.setId(savedCustomer.getId());
+        customerRepository.save(customer);
+    }
 
-            Optional<Customer> customerOptional = customerRepository.findCustomerByEmail(email);
-            if (customerOptional.isPresent()) {
-                throw new IllegalStateException("email taken");
-            }
-            customer.setEmail(email);
-        }
+    private Customer findByIdOrThrowIllegalStateException(Long customerId) {
+        return customerRepository.findById(customerId)
+                .orElseThrow(() -> new IllegalStateException("customer with id " + customerId + " does not exists"));
     }
 }
