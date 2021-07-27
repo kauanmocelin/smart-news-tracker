@@ -14,6 +14,7 @@ import java.util.Optional;
 public class CustomerService {
 
     private final CustomerRepository customerRepository;
+    private final CustomerMapper customerMapper;
 
     public List<Customer> getCustomers() {
         return customerRepository.findAll();
@@ -24,7 +25,7 @@ public class CustomerService {
         if (customerOptional.isPresent()) {
             throw new IllegalStateException("email taken");
         }
-        customerRepository.save(CustomerMapper.INSTANCE.toCustomer(customerPostRequestBody));
+        customerRepository.save(customerMapper.toCustomer(customerPostRequestBody));
     }
 
     public void deleteCustomer(Long customerId) {
@@ -43,7 +44,7 @@ public class CustomerService {
             throw new IllegalStateException("email taken");
         }
 
-        Customer customer = CustomerMapper.INSTANCE.toCustomer(customerPutRequestBody);
+        Customer customer = customerMapper.toCustomer(customerPutRequestBody);
         customer.setId(savedCustomer.getId());
         customerRepository.save(customer);
     }
