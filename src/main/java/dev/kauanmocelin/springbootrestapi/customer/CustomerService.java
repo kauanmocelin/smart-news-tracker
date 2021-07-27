@@ -16,19 +16,19 @@ public class CustomerService {
     private final CustomerRepository customerRepository;
     private final CustomerMapper customerMapper;
 
-    public List<Customer> getCustomers() {
+    public List<Customer> findAll() {
         return customerRepository.findAll();
     }
 
-    public void addNewCustomer(CustomerPostRequestBody customerPostRequestBody) {
+    public Customer save(CustomerPostRequestBody customerPostRequestBody) {
         Optional<Customer> customerOptional = customerRepository.findCustomerByEmail(customerPostRequestBody.getEmail());
         if (customerOptional.isPresent()) {
             throw new IllegalStateException("email taken");
         }
-        customerRepository.save(customerMapper.toCustomer(customerPostRequestBody));
+        return customerRepository.save(customerMapper.toCustomer(customerPostRequestBody));
     }
 
-    public void deleteCustomer(Long customerId) {
+    public void delete(Long customerId) {
         boolean customerExists = customerRepository.existsById(customerId);
         if (!customerExists) {
             throw new IllegalStateException("customer with id " + customerId + " does not exists");
@@ -36,7 +36,7 @@ public class CustomerService {
         customerRepository.deleteById(customerId);
     }
 
-    public void updateCustomer(Long customerId, CustomerPutRequestBody customerPutRequestBody) {
+    public void replace(Long customerId, CustomerPutRequestBody customerPutRequestBody) {
         Customer savedCustomer = findByIdOrThrowIllegalStateException(customerId);
 
         Optional<Customer> customerOptional = customerRepository.findCustomerByEmail(customerPutRequestBody.getEmail());

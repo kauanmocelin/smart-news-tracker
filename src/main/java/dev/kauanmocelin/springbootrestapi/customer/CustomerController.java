@@ -3,6 +3,8 @@ package dev.kauanmocelin.springbootrestapi.customer;
 import dev.kauanmocelin.springbootrestapi.customer.request.CustomerPostRequestBody;
 import dev.kauanmocelin.springbootrestapi.customer.request.CustomerPutRequestBody;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,22 +17,24 @@ public class CustomerController {
     private final CustomerService customerService;
 
     @GetMapping
-    public List<Customer> getCustomers() {
-        return customerService.getCustomers();
+    public ResponseEntity<List<Customer>> listAll() {
+        return ResponseEntity.ok(customerService.findAll());
     }
 
     @PostMapping
-    public void registerNewCustomer(@RequestBody CustomerPostRequestBody customerPostRequestBody) {
-        customerService.addNewCustomer(customerPostRequestBody);
+    public ResponseEntity<Customer> registerNewCustomer(@RequestBody CustomerPostRequestBody customerPostRequestBody) {
+        return new ResponseEntity<>(customerService.save(customerPostRequestBody), HttpStatus.CREATED);
     }
 
     @DeleteMapping(path = "{customerId}")
-    public void deleteCustomer(@PathVariable("customerId") Long customerId) {
-        customerService.deleteCustomer(customerId);
+    public ResponseEntity<Void> deleteCustomer(@PathVariable("customerId") Long customerId) {
+        customerService.delete(customerId);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @PutMapping(path = "{customerId}")
-    public void updateCustomer(@PathVariable("customerId") Long customerId, @RequestBody CustomerPutRequestBody customerPutRequestBody) {
-        customerService.updateCustomer(customerId, customerPutRequestBody);
+    public ResponseEntity<Void> updateCustomer(@PathVariable("customerId") Long customerId, @RequestBody CustomerPutRequestBody customerPutRequestBody) {
+        customerService.replace(customerId, customerPutRequestBody);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
