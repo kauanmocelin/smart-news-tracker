@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController()
@@ -22,7 +23,7 @@ public class CustomerController {
     }
 
     @PostMapping
-    public ResponseEntity<Customer> registerNewCustomer(@RequestBody CustomerPostRequestBody customerPostRequestBody) {
+    public ResponseEntity<Customer> registerNewCustomer(@RequestBody @Valid CustomerPostRequestBody customerPostRequestBody) {
         return new ResponseEntity<>(customerService.save(customerPostRequestBody), HttpStatus.CREATED);
     }
 
@@ -33,7 +34,7 @@ public class CustomerController {
     }
 
     @PutMapping(path = "{customerId}")
-    public ResponseEntity<Void> updateCustomer(@PathVariable("customerId") Long customerId, @RequestBody CustomerPutRequestBody customerPutRequestBody) {
+    public ResponseEntity<Void> updateCustomer(@PathVariable("customerId") Long customerId, @RequestBody @Valid CustomerPutRequestBody customerPutRequestBody) {
         customerService.replace(customerId, customerPutRequestBody);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
