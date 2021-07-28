@@ -22,7 +22,13 @@ public class CustomerController {
         return ResponseEntity.ok(customerService.findAll());
     }
 
+    @GetMapping(path = "/{customerId}")
+    public ResponseEntity<Customer> findById(@PathVariable Long customerId) {
+        return ResponseEntity.ok(customerService.findByIdOrThrowBadRequestException(customerId));
+    }
+
     @PostMapping
+
     public ResponseEntity<Customer> registerNewCustomer(@RequestBody @Valid CustomerPostRequestBody customerPostRequestBody) {
         return new ResponseEntity<>(customerService.save(customerPostRequestBody), HttpStatus.CREATED);
     }

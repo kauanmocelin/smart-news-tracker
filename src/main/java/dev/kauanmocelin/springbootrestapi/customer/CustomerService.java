@@ -1,5 +1,6 @@
 package dev.kauanmocelin.springbootrestapi.customer;
 
+import dev.kauanmocelin.springbootrestapi.customer.exception.BadRequestException;
 import dev.kauanmocelin.springbootrestapi.customer.mapper.CustomerMapper;
 import dev.kauanmocelin.springbootrestapi.customer.request.CustomerPostRequestBody;
 import dev.kauanmocelin.springbootrestapi.customer.request.CustomerPutRequestBody;
@@ -37,7 +38,7 @@ public class CustomerService {
     }
 
     public void replace(Long customerId, CustomerPutRequestBody customerPutRequestBody) {
-        Customer savedCustomer = findByIdOrThrowIllegalStateException(customerId);
+        Customer savedCustomer = findByIdOrThrowBadRequestException(customerId);
 
         Optional<Customer> customerOptional = customerRepository.findCustomerByEmail(customerPutRequestBody.getEmail());
         if (customerOptional.isPresent() && !customerOptional.get().getId().equals(savedCustomer.getId())) {
@@ -49,8 +50,8 @@ public class CustomerService {
         customerRepository.save(customer);
     }
 
-    private Customer findByIdOrThrowIllegalStateException(Long customerId) {
+    public Customer findByIdOrThrowBadRequestException(Long customerId) {
         return customerRepository.findById(customerId)
-                .orElseThrow(() -> new IllegalStateException("customer with id " + customerId + " does not exists"));
+                .orElseThrow(() -> new BadRequestException("customer with id " + customerId + " does not exists"));
     }
 }
