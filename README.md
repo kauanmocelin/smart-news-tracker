@@ -7,7 +7,7 @@
 This is a simple rest api(CRUD) using Spring Boot. The main objective was learning about spring ecosystem and your tools
 and about concepts involving rest api development.
 
-# Technology stack
+# Built With
 
 - Java
 - Spring Boot
@@ -19,9 +19,12 @@ and about concepts involving rest api development.
 - Open API 3
 - Docker
 
-# How to run project
+# Prerequisites
 
-**Prerequisites**: Java 11
+- Java 11
+- Docker
+
+# Installation
 
 ```bash
 # clone repository
@@ -42,5 +45,6 @@ http://127.0.0.1:8080/swagger-ui.html
 
 # Author
 
-Kauan Mocelin
+**Kauan Mocelin**
 
+[![Twitter Follow](https://img.shields.io/twitter/follow/kauanmocelin?style=social)](https://twitter.com/kauanmocelin)
