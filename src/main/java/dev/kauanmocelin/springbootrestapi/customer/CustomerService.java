@@ -27,7 +27,7 @@ public class CustomerService {
     }
 
     public Customer save(CustomerPostRequestBody customerPostRequestBody) {
-        Optional<Customer> customerOptional = customerRepository.findCustomerByEmail(customerPostRequestBody.getEmail());
+        Optional<Customer> customerOptional = customerRepository.findByEmail(customerPostRequestBody.getEmail());
         if (customerOptional.isPresent()) {
             throw new IllegalStateException("email taken");
         }
@@ -45,7 +45,7 @@ public class CustomerService {
     public void replace(CustomerPutRequestBody customerPutRequestBody) {
         Customer savedCustomer = findByIdOrThrowBadRequestException(customerPutRequestBody.getId());
 
-        Optional<Customer> customerOptional = customerRepository.findCustomerByEmail(customerPutRequestBody.getEmail());
+        Optional<Customer> customerOptional = customerRepository.findByEmail(customerPutRequestBody.getEmail());
         if (customerOptional.isPresent() && !customerOptional.get().getId().equals(savedCustomer.getId())) {
             throw new IllegalStateException("email taken");
         }
