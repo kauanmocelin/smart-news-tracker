@@ -29,7 +29,7 @@ public class CustomerService {
     public Customer save(CustomerPostRequestBody customerPostRequestBody) {
         Optional<Customer> customerOptional = customerRepository.findByEmail(customerPostRequestBody.getEmail());
         if (customerOptional.isPresent()) {
-            throw new IllegalStateException("email taken");
+            throw new BadRequestException("email taken");
         }
         return customerRepository.save(customerMapper.toCustomer(customerPostRequestBody));
     }
@@ -37,7 +37,7 @@ public class CustomerService {
     public void delete(Long customerId) {
         boolean customerExists = customerRepository.existsById(customerId);
         if (!customerExists) {
-            throw new IllegalStateException("customer with id " + customerId + " does not exists");
+            throw new BadRequestException("customer with id " + customerId + " does not exists");
         }
         customerRepository.deleteById(customerId);
     }
@@ -47,7 +47,7 @@ public class CustomerService {
 
         Optional<Customer> customerOptional = customerRepository.findByEmail(customerPutRequestBody.getEmail());
         if (customerOptional.isPresent() && !customerOptional.get().getId().equals(savedCustomer.getId())) {
-            throw new IllegalStateException("email taken");
+            throw new BadRequestException("email taken");
         }
 
         Customer customer = customerMapper.toCustomer(customerPutRequestBody);
