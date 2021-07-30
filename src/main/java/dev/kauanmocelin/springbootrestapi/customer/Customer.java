@@ -1,9 +1,9 @@
 package dev.kauanmocelin.springbootrestapi.customer;
 
-import lombok.Getter;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -14,10 +14,10 @@ import java.time.LocalDate;
 import java.time.Period;
 
 @NoArgsConstructor
-@ToString
-@Getter
-@Setter
+@AllArgsConstructor
+@Data
 @Entity
+@Builder
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

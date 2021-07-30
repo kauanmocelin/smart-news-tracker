@@ -28,7 +28,6 @@ public class CustomerController {
     }
 
     @PostMapping
-
     public ResponseEntity<Customer> registerNewCustomer(@RequestBody @Valid CustomerPostRequestBody customerPostRequestBody) {
         return new ResponseEntity<>(customerService.save(customerPostRequestBody), HttpStatus.CREATED);
     }
@@ -39,9 +38,9 @@ public class CustomerController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @PutMapping(path = "{customerId}")
-    public ResponseEntity<Void> updateCustomer(@PathVariable("customerId") Long customerId, @RequestBody @Valid CustomerPutRequestBody customerPutRequestBody) {
-        customerService.replace(customerId, customerPutRequestBody);
+    @PutMapping()
+    public ResponseEntity<Void> updateCustomer(@RequestBody @Valid CustomerPutRequestBody customerPutRequestBody) {
+        customerService.replace(customerPutRequestBody);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

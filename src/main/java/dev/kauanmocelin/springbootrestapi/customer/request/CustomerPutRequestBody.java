@@ -1,6 +1,7 @@
 package dev.kauanmocelin.springbootrestapi.customer.request;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 
 import javax.validation.constraints.Email;
@@ -11,7 +12,11 @@ import java.time.LocalDate;
 
 @Data
 @AllArgsConstructor
+@Builder
 public class CustomerPutRequestBody {
+    @NotBlank(message = "The customer id cannot be empty")
+    private Long id;
+
     @NotBlank(message = "The customer name cannot be empty")
     @Size(min = 3, max = 100)
     private String name;

@@ -21,6 +21,11 @@ public class CustomerService {
         return customerRepository.findAll();
     }
 
+    public Customer findByIdOrThrowBadRequestException(Long customerId) {
+        return customerRepository.findById(customerId)
+                .orElseThrow(() -> new BadRequestException("customer with id " + customerId + " does not exists"));
+    }
+
     public Customer save(CustomerPostRequestBody customerPostRequestBody) {
         Optional<Customer> customerOptional = customerRepository.findCustomerByEmail(customerPostRequestBody.getEmail());
         if (customerOptional.isPresent()) {
@@ -37,8 +42,8 @@ public class CustomerService {
         customerRepository.deleteById(customerId);
     }
 
-    public void replace(Long customerId, CustomerPutRequestBody customerPutRequestBody) {
-        Customer savedCustomer = findByIdOrThrowBadRequestException(customerId);
+    public void replace(CustomerPutRequestBody customerPutRequestBody) {
+        Customer savedCustomer = findByIdOrThrowBadRequestException(customerPutRequestBody.getId());
 
         Optional<Customer> customerOptional = customerRepository.findCustomerByEmail(customerPutRequestBody.getEmail());
         if (customerOptional.isPresent() && !customerOptional.get().getId().equals(savedCustomer.getId())) {
@@ -48,10 +53,5 @@ public class CustomerService {
         Customer customer = customerMapper.toCustomer(customerPutRequestBody);
         customer.setId(savedCustomer.getId());
         customerRepository.save(customer);
-    }
-
-    public Customer findByIdOrThrowBadRequestException(Long customerId) {
-        return customerRepository.findById(customerId)
-                .orElseThrow(() -> new BadRequestException("customer with id " + customerId + " does not exists"));
     }
 }
