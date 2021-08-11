@@ -16,7 +16,7 @@ and about concepts involving rest api development.
 - Maven
 - Lombok
 - MapStruct
-- Open API 3
+- SpringDoc - Open API 3
 - Docker
 
 # Prerequisites
