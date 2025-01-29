@@ -11,5 +11,6 @@ spring:
       hibernate.format_sql: true
 
 server:
+  port: 8083
   error:
     include-message: always
