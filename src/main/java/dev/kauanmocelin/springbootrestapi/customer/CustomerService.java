@@ -1,14 +1,15 @@
 package dev.kauanmocelin.springbootrestapi.customer;
 
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.stereotype.Service;
+
 import dev.kauanmocelin.springbootrestapi.customer.exception.BadRequestException;
 import dev.kauanmocelin.springbootrestapi.customer.mapper.CustomerMapper;
 import dev.kauanmocelin.springbootrestapi.customer.request.CustomerPostRequestBody;
 import dev.kauanmocelin.springbootrestapi.customer.request.CustomerPutRequestBody;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
