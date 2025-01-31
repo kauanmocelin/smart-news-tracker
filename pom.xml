@@ -69,6 +69,11 @@
             <artifactId>springdoc-openapi-ui</artifactId>
             <version>${springdoc-openapi-ui.version}</version>
         </dependency>
+		<dependency>
+		    <groupId>io.rest-assured</groupId>
+            <artifactId>rest-assured</artifactId>
+            <scope>test</scope>
+		</dependency>
     </dependencies>
 
     <build>
