@@ -9,13 +9,13 @@ and about concepts involving rest api development.
 
 # Prerequisites
 
-- Java 11
+- Java 21
 - Docker
 
 # Technologies
 
-- Java
-- Spring Boot
+- Java 21
+- Spring Boot v3
 - Spring Data JPA
 - Unit Testing
 - Maven
