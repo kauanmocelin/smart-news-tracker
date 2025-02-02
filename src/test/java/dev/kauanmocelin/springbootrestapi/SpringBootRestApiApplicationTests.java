@@ -49,7 +49,7 @@ class SpringBootRestApiApplicationTests {
             .contentType(ContentType.JSON)
             .body(customerToSave)
             .when()
-            .post("/api/v1/customer")
+            .post("/api/v1/customers")
             .then()
             .statusCode(HttpStatus.CREATED.value())
             .body("name", equalTo("Fulano da Silva"))
@@ -68,7 +68,7 @@ class SpringBootRestApiApplicationTests {
             .contentType(ContentType.JSON)
             .body(customerToSave)
             .when()
-            .post("/api/v1/customer")
+            .post("/api/v1/customers")
             .then()
             .extract()
             .jsonPath().getLong("id");
@@ -76,7 +76,7 @@ class SpringBootRestApiApplicationTests {
         given()
             .contentType(ContentType.JSON)
             .when()
-            .get("/api/v1/customer/{customerId}", idSavedCustomer)
+            .get("/api/v1/customers/{customerId}", idSavedCustomer)
             .then()
             .statusCode(HttpStatus.OK.value())
             .body("email", equalTo("fulano@gmail.com"));
@@ -98,16 +98,16 @@ class SpringBootRestApiApplicationTests {
             .contentType(ContentType.JSON)
             .body(customerToSave)
             .when()
-            .post("/api/v1/customer");
+            .post("/api/v1/customers");
         given()
             .contentType(ContentType.JSON)
             .body(anotherCustomerToSave)
             .when()
-            .post("/api/v1/customer");
+            .post("/api/v1/customers");
         given()
             .contentType(ContentType.JSON)
             .when()
-            .get("/api/v1/customer")
+            .get("/api/v1/customers")
             .then()
             .statusCode(HttpStatus.OK.value())
             .body("size()", equalTo(2))
@@ -126,7 +126,7 @@ class SpringBootRestApiApplicationTests {
             .contentType(ContentType.JSON)
             .body(customerToSave)
             .when()
-            .post("/api/v1/customer")
+            .post("/api/v1/customers")
             .then()
             .extract()
             .jsonPath().getLong("id");
@@ -140,13 +140,13 @@ class SpringBootRestApiApplicationTests {
             .contentType(ContentType.JSON)
             .body(customerToUpdate)
             .when()
-            .put("/api/v1/customer")
+            .put("/api/v1/customers")
             .then()
             .statusCode(HttpStatus.NO_CONTENT.value());
         given()
             .contentType(ContentType.JSON)
             .when()
-            .get("/api/v1/customer/{customerId}", idSavedCustomer)
+            .get("/api/v1/customers/{customerId}", idSavedCustomer)
             .then()
             .statusCode(HttpStatus.OK.value())
             .body(notNullValue())
@@ -164,11 +164,11 @@ class SpringBootRestApiApplicationTests {
             .contentType(ContentType.JSON)
             .body(customerToSave)
             .when()
-            .post("/api/v1/customer");
+            .post("/api/v1/customers");
         final List<Customer> customers = given()
             .contentType(ContentType.JSON)
             .when()
-            .get("/api/v1/customer")
+            .get("/api/v1/customers")
             .then()
             .statusCode(HttpStatus.OK.value())
             .body("size()", equalTo(1))
@@ -178,13 +178,13 @@ class SpringBootRestApiApplicationTests {
         given()
             .contentType(ContentType.JSON)
             .when()
-            .delete("/api/v1/customer/{idCustomerToDelete}", customers.get(0).getId())
+            .delete("/api/v1/customers/{idCustomerToDelete}", customers.get(0).getId())
             .then()
             .statusCode(HttpStatus.NO_CONTENT.value());
         given()
             .contentType(ContentType.JSON)
             .when()
-            .get("/api/v1/customer")
+            .get("/api/v1/customers")
             .then()
             .statusCode(HttpStatus.OK.value())
             .body("size()", equalTo(0));

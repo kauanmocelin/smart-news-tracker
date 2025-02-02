@@ -27,13 +27,13 @@ public class CustomerController {
         return ResponseEntity.ok(customerService.findAll());
     }
 
-    @GetMapping(path = "/{customerId}")
+    @GetMapping(path = "/{customer-id}")
     @Operation(summary = "Find customer by Id", description = "Find customer by Id", tags = {"customer"})
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Successful operation"),
             @ApiResponse(responseCode = "400", description = "Customer does not exist in the database with id")
     })
-    public ResponseEntity<Customer> findById(@PathVariable Long customerId) {
+    public ResponseEntity<Customer> findById(@PathVariable("customer-id") Long customerId) {
         return ResponseEntity.ok(customerService.findByIdOrThrowBadRequestException(customerId));
     }
 
@@ -43,13 +43,13 @@ public class CustomerController {
         return new ResponseEntity<>(customerService.save(customerPostRequestBody), HttpStatus.CREATED);
     }
 
-    @DeleteMapping(path = "{customerId}")
+    @DeleteMapping(path = "{customer-id}")
     @Operation(summary = "Delete customer", description = "Delete customer", tags = {"customer"})
     @ApiResponses(value = {
             @ApiResponse(responseCode = "204", description = "Successful operation"),
             @ApiResponse(responseCode = "400", description = "When customer does no exist in the database")
     })
-    public ResponseEntity<Void> deleteCustomer(@PathVariable("customerId") Long customerId) {
+    public ResponseEntity<Void> deleteCustomer(@PathVariable("customer-id") Long customerId) {
         customerService.delete(customerId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
