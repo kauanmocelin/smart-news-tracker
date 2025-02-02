@@ -39,6 +39,7 @@ public class Customer {
     @PastOrPresent
     private LocalDate dateOfBirth;
 
+    @NotNull
     @CreatedDate
     private LocalDateTime createdDate;
 
