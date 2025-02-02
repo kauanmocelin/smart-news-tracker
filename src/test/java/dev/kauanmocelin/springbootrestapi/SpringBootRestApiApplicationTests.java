@@ -27,7 +27,7 @@ class SpringBootRestApiApplicationTests {
 
     @BeforeEach
     void clearDatabase(@Autowired JdbcTemplate jdbcTemplate) {
-        JdbcTestUtils.deleteFromTables(jdbcTemplate, "customer");
+        JdbcTestUtils.deleteFromTables(jdbcTemplate, "customers");
     }
 
     @LocalServerPort
