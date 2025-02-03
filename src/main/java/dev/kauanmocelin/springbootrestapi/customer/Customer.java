@@ -39,7 +39,6 @@ public class Customer {
     @PastOrPresent(message = "The customer date of birth must be in past or present")
     private LocalDate dateOfBirth;
 
-    @NotNull
     @CreatedDate
     private LocalDateTime createdDate;
 
