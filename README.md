@@ -17,6 +17,7 @@ and about concepts involving rest api development.
 - Java 21
 - Spring Boot v3
 - Spring Data JPA
+- Flyway
 - Unit Testing
 - Maven
 - Lombok
