@@ -20,33 +20,35 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestControllerAdvice
-public class RestExceptionHandler extends ResponseEntityExceptionHandler {
+public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(BadRequestException.class)
-    public BadRequestExceptionDetails handleBadRequestException(BadRequestException bre) {
+    public BadRequestExceptionDetails handleBadRequestException(BadRequestException bre, WebRequest request) {
         return BadRequestExceptionDetails.builder()
-		        .timestamp(LocalDateTime.now())
-		        .title("Bad Request Exception, check de documentation")
-		        .details(bre.getMessage())
-		        .developerMessage(bre.getClass().getName())
-		        .build();
+            .timestamp(LocalDateTime.now())
+            .title("Bad Request Exception, check de documentation")
+            .details(bre.getMessage())
+            .path(request.getDescription(false))
+            .developerMessage(bre.getClass().getName())
+            .build();
     }
 
-	@Override
-	protected ResponseEntity<Object> handleMethodArgumentNotValid(
-		MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
+    @Override
+    protected ResponseEntity<Object> handleMethodArgumentNotValid(
+        MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
 
         List<FieldError> fieldErrors = ex.getBindingResult().getFieldErrors();
         List<FieldErrorMessage> fieldsErrorMessage = fieldErrors.stream()
-                .map(field -> new FieldErrorMessage(field.getField(), field.getDefaultMessage()))
-                .collect(Collectors.toList());
+            .map(field -> new FieldErrorMessage(field.getField(), field.getDefaultMessage()))
+            .collect(Collectors.toList());
 
         return new ResponseEntity<>(
-                ValidationExceptionDetails.builder()
-	                    .timestamp(LocalDateTime.now())
-	                    .title("Bad Request Exception, check de documentation")
-	                    .details("Check the field(s) error")
-	                    .developerMessage(ex.getClass().getName())
-	                    .fieldsErrorValidation(fieldsErrorMessage)
-	                    .build(), HttpStatus.BAD_REQUEST);
+            ValidationExceptionDetails.builder()
+                .timestamp(LocalDateTime.now())
+                .title("Bad Request Exception, check de documentation")
+                .details("Check the field(s) error")
+                .path(request.getDescription(false))
+                .developerMessage(ex.getClass().getName())
+                .fieldsErrorValidation(fieldsErrorMessage)
+                .build(), HttpStatus.BAD_REQUEST);
     }
 }

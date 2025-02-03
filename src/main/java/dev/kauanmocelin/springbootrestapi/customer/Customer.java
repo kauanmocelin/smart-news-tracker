@@ -27,16 +27,16 @@ public class Customer {
     private Long id;
 
     @NotBlank(message = "The customer name cannot be empty")
-    @Size(min = 3, max = 100)
+    @Size(min = 3, max = 100, message = "The customer name must be between 3 and 100 characters")
     private String name;
 
     @Column(unique = true)
     @NotBlank(message = "The customer e-mail cannot be empty")
-    @Email
+    @Email(message = "The customer email should be valid")
     private String email;
 
-    @NotNull(message = "The customer date of birth cannot be empty")
-    @PastOrPresent
+    @NotNull(message = "The customer date of birth cannot be null")
+    @PastOrPresent(message = "The customer date of birth must be in past or present")
     private LocalDate dateOfBirth;
 
     @NotNull

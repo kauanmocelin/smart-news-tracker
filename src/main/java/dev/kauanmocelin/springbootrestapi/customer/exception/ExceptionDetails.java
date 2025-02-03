@@ -1,9 +1,9 @@
 package dev.kauanmocelin.springbootrestapi.customer.exception;
 
-import java.time.LocalDateTime;
-
 import lombok.Data;
 import lombok.experimental.SuperBuilder;
+
+import java.time.LocalDateTime;
 
 @Data
 @SuperBuilder
@@ -12,4 +12,5 @@ public class ExceptionDetails {
     protected String details;
     protected String developerMessage;
     protected LocalDateTime timestamp;
+    protected String path;
 }
