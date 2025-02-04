@@ -200,7 +200,7 @@ class SpringBootRestApiApplicationTests {
         given()
             .contentType(ContentType.JSON)
             .when()
-            .delete("/api/v1/customers/{idCustomerToDelete}", customers.get(0).getId())
+            .delete("/api/v1/customers/{idCustomerToDelete}", customers.getFirst().getId())
             .then()
             .statusCode(HttpStatus.NO_CONTENT.value());
         given()
