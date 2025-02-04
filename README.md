@@ -19,6 +19,7 @@ and about concepts involving rest api development.
 - Spring Data JPA
 - Flyway
 - Unit Testing
+- Testcontainers
 - Maven
 - Lombok
 - MapStruct
