@@ -3,15 +3,31 @@ spring:
     url: jdbc:mysql://127.0.0.1:3306/customer?createDatabaseIfNotExist=true
     username: root
     password: root
-    driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
       ddl-auto: validate
     show-sql: true
     properties:
       hibernate.format_sql: true
+  mail:
+    host: localhost
+    port: 1025
+    username: hello
+    password: hello
 
+    properties:
+      mail:
+        smtp:
+          ssl:
+            trust: "*"
+          auth: true
+          starttls:
+            enable: true
+          connectiontimeout: 5000
+          timeout: 3000
+          writetimeout: 5000
 server:
   port: 8083
   error:
     include-message: always
+    include-binding-errors: always
