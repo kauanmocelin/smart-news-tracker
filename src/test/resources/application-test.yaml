@@ -8,3 +8,6 @@ logging:
   level:
     sql: debug
     org.hibernate.orm.jdbc.bind: trace
+    org.springframework.test.context.jdbc: debug
+    org.springframework.jdbc.datasource.init.jdbc: debug
+
