@@ -6,12 +6,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.Period;
 
 @NoArgsConstructor
@@ -38,12 +35,6 @@ public class Customer {
     @NotNull(message = "The customer date of birth cannot be null")
     @PastOrPresent(message = "The customer date of birth must be in past or present")
     private LocalDate dateOfBirth;
-
-    @CreatedDate
-    private LocalDateTime createdDate;
-
-    @LastModifiedDate
-    private LocalDateTime lastModifiedDate;
 
     @Transient
     private Integer age;
