@@ -1,11 +1,11 @@
-create table confirmation_tokens (
-    id bigint not null auto_increment,
-    token varchar(255) not null,
-    created_at timestamp(6),
-    expiresd_at timestamp(6),
-    confirmed_at timestamp(6),
-    app_user_id bigint not null,
-    primary key (id),
-    foreign key (app_user_id)
-        references app_users(id)
-)
+CREATE TABLE confirmation_tokens (
+    id BIGSERIAL PRIMARY KEY,
+    token VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP(6),
+    expires_at TIMESTAMP(6),
+    confirmed_at TIMESTAMP(6),
+    app_user_id BIGINT NOT NULL,
+    CONSTRAINT fk_app_user
+        FOREIGN KEY (app_user_id)
+        REFERENCES app_users(id) ON DELETE CASCADE
+);

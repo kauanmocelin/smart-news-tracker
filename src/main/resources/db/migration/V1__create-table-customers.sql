@@ -1,7 +1,6 @@
-create table customers (
-    id bigint not null auto_increment,
-    date_of_birth date not null,
-    name varchar(100) not null,
-    email varchar(255) not null unique,
-    primary key (id)
-)
+CREATE TABLE customers (
+    id BIGSERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    date_of_birth DATE NOT NULL
+);

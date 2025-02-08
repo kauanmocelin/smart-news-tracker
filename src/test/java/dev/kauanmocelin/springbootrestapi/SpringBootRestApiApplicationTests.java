@@ -18,7 +18,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.springframework.test.context.jdbc.Sql;
-import org.testcontainers.containers.MySQLContainer;
+import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.utility.DockerImageName;
@@ -38,15 +38,15 @@ import static org.hamcrest.Matchers.*;
 class SpringBootRestApiApplicationTests {
 
     @Container
-    private static final MySQLContainer<?> mySQLContainer = new MySQLContainer<>(DockerImageName.parse(
-        "mysql:8.1.0"
+    private static final PostgreSQLContainer<?> postgresSqlContainer = new PostgreSQLContainer<>(DockerImageName.parse(
+        "postgres:15.10"
     ));
 
     @DynamicPropertySource
     static void configureProperties(DynamicPropertyRegistry registry) {
-        registry.add("spring.datasource.url", mySQLContainer::getJdbcUrl);
-        registry.add("spring.datasource.username", mySQLContainer::getUsername);
-        registry.add("spring.datasource.password", mySQLContainer::getPassword);
+        registry.add("spring.datasource.url", postgresSqlContainer::getJdbcUrl);
+        registry.add("spring.datasource.username", postgresSqlContainer::getUsername);
+        registry.add("spring.datasource.password", postgresSqlContainer::getPassword);
     }
 
     @LocalServerPort
