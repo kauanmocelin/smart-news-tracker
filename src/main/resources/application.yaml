@@ -1,8 +1,12 @@
 spring:
+  application:
+    name: rest-api-springboot
+  config:
+    import: optional:file:.env[.properties]
   datasource:
     url: jdbc:postgresql://localhost:5432/customer
-    username: postgres
-    password: postgres
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
   jpa:
     hibernate:
       ddl-auto: validate
@@ -12,9 +16,8 @@ spring:
   mail:
     host: localhost
     port: 1025
-    username: hello
-    password: hello
-
+    username: ${DEVMAIL_USERNAME}
+    password: ${DEVMAIL_PASSWORD}
     properties:
       mail:
         smtp:
@@ -27,7 +30,7 @@ spring:
           timeout: 3000
           writetimeout: 5000
 server:
-  port: 8083
+  port: 8080
   error:
     include-message: always
     include-binding-errors: always
