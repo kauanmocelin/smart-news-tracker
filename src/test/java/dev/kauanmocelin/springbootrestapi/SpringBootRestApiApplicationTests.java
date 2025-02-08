@@ -66,11 +66,10 @@ class SpringBootRestApiApplicationTests {
     @Test
     @Sql("data.sql")
     void shouldCreateNewCustomerWithSuccessWhenValidRequestIsSent() {
-        final var customerToSave = CustomerPostRequestBody.builder()
-            .name("Fulano da Silva")
-            .email("fulano@gmail.com")
-            .dateOfBirth(LocalDate.of(2000, 1, 1))
-            .build();
+        final var customerToSave = new CustomerPostRequestBody(
+            "Fulano da Silva",
+            "fulano@gmail.com",
+            LocalDate.of(2000, 1, 1));
         given()
             .contentType(ContentType.JSON)
             .auth().basic("user@gmail.com", "pass")
@@ -88,11 +87,10 @@ class SpringBootRestApiApplicationTests {
     @Test
     @Sql("data.sql")
     void shouldReturnCustomerWhenHeExistInDatabase() {
-        final var customerToSave = CustomerPostRequestBody.builder()
-            .name("Fulano da Silva")
-            .email("fulano@gmail.com")
-            .dateOfBirth(LocalDate.of(2000, 1, 1))
-            .build();
+        final var customerToSave = new CustomerPostRequestBody(
+            "Fulano da Silva",
+            "fulano@gmail.com",
+            LocalDate.of(2000, 1, 1));
         final var idSavedCustomer = given()
             .contentType(ContentType.JSON)
             .auth().basic("user@gmail.com", "pass")
@@ -116,16 +114,14 @@ class SpringBootRestApiApplicationTests {
     @Test
     @Sql("data.sql")
     void shouldReturnAllCustomersWhenTheyExistInDatabase() {
-        final var customerToSave = CustomerPostRequestBody.builder()
-            .name("Fulano da Silva")
-            .email("fulano@gmail.com")
-            .dateOfBirth(LocalDate.of(2000, 1, 1))
-            .build();
-        final var anotherCustomerToSave = CustomerPostRequestBody.builder()
-            .name("Jose Pereira")
-            .email("jose@hotmail.com")
-            .dateOfBirth(LocalDate.of(1985, 3, 1))
-            .build();
+        final var customerToSave = new CustomerPostRequestBody(
+            "Fulano da Silva",
+            "fulano@gmail.com",
+            LocalDate.of(2000, 1, 1));
+        final var anotherCustomerToSave = new CustomerPostRequestBody(
+            "Jose Pereira",
+            "jose@hotmail.com",
+            LocalDate.of(1985, 3, 1));
         given()
             .contentType(ContentType.JSON)
             .auth().basic("user@gmail.com", "pass")
@@ -153,11 +149,10 @@ class SpringBootRestApiApplicationTests {
     @Test
     @Sql("data.sql")
     void shouldUpdateCustomerBirthDateWhenValidRequestIsSent() {
-        final var customerToSave = CustomerPostRequestBody.builder()
-            .name("Fulano da Silva")
-            .email("fulano@gmail.com")
-            .dateOfBirth(LocalDate.of(2000, 1, 1))
-            .build();
+        final var customerToSave = new CustomerPostRequestBody(
+            "Fulano da Silva",
+            "fulano@gmail.com",
+            LocalDate.of(2000, 1, 1));
         final var idSavedCustomer = given()
             .contentType(ContentType.JSON)
             .auth().basic("user@gmail.com", "pass")
@@ -195,11 +190,10 @@ class SpringBootRestApiApplicationTests {
     @Test
     @Sql("data.sql")
     void shouldDeleteCustomerSuccessfullyWhenCustomerIsPresentInDatabase() {
-        final var customerToSave = CustomerPostRequestBody.builder()
-            .name("Fulano da Silva")
-            .email("fulano@gmail.com")
-            .dateOfBirth(LocalDate.of(2000, 1, 1))
-            .build();
+        final var customerToSave = new CustomerPostRequestBody(
+            "Fulano da Silva",
+            "fulano@gmail.com",
+            LocalDate.of(2000, 1, 1));
         given()
             .contentType(ContentType.JSON)
             .auth().basic("user@gmail.com", "pass")

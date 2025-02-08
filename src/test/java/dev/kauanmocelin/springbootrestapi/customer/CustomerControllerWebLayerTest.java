@@ -5,6 +5,7 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import dev.kauanmocelin.springbootrestapi.customer.mapper.CustomerMapper;
 import dev.kauanmocelin.springbootrestapi.customer.mapper.CustomerMapperImpl;
 import dev.kauanmocelin.springbootrestapi.customer.request.CustomerPostRequestBody;
+import dev.kauanmocelin.springbootrestapi.util.CustomerPostRequestBodyCreator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -19,8 +20,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-
-import java.time.LocalDate;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
@@ -40,36 +39,30 @@ class CustomerControllerWebLayerTest {
     @MockitoBean
     private CustomerService customerService;
 
-    private CustomerPostRequestBody customerPostRequestBody;
     private ObjectMapper objectMapper;
 
     @BeforeEach
     void setUp() {
-        customerPostRequestBody = CustomerPostRequestBody.builder()
-            .name("Joao")
-            .email("joao@gmail.com")
-            .dateOfBirth(LocalDate.of(2000, 1, 20))
-            .build();
         objectMapper = new ObjectMapper().registerModule(new JavaTimeModule());
     }
 
     @Test
     @DisplayName("Customer can be create")
     void shouldReturnNewCustomerWhenValidInputProvided() throws Exception {
-        Customer customerMock = customerMapper.toCustomer(customerPostRequestBody);
+        Customer customerMock = customerMapper.toCustomer(CustomerPostRequestBodyCreator.createPostRequestBodyCreator());
         customerMock.setId(1L);
         when(customerService.save(any(CustomerPostRequestBody.class))).thenReturn(customerMock);
 
         RequestBuilder requestBuilder = MockMvcRequestBuilders.post("/api/v1/customers")
             .contentType(MediaType.APPLICATION_JSON)
             .accept(MediaType.APPLICATION_JSON)
-            .content(objectMapper.writeValueAsString(customerPostRequestBody));
+            .content(objectMapper.writeValueAsString(CustomerPostRequestBodyCreator.createPostRequestBodyCreator()));
 
         MvcResult mvcResult = mockMvc.perform(requestBuilder).andReturn();
         String responseBodyAsString = mvcResult.getResponse().getContentAsString();
         Customer createdCustomer = objectMapper.readValue(responseBodyAsString, Customer.class);
 
-        assertThat(customerPostRequestBody.getEmail())
+        assertThat(CustomerPostRequestBodyCreator.createPostRequestBodyCreator().email())
             .as("The returned e-mail is most likely incorrect")
             .isEqualTo(createdCustomer.getEmail());
         assertThat(createdCustomer.getId())
@@ -81,16 +74,14 @@ class CustomerControllerWebLayerTest {
     @Test
     @DisplayName("Name is not empty")
     void shouldReturnExceptionBadRequestWhenNameIsNotProvided() throws Exception {
-        customerPostRequestBody.setName("");
-
-        Customer customerMock = customerMapper.toCustomer(customerPostRequestBody);
+        Customer customerMock = customerMapper.toCustomer(CustomerPostRequestBodyCreator.createPostRequestBodyWithoutNameCreator());
         customerMock.setId(1L);
         when(customerService.save(any(CustomerPostRequestBody.class))).thenReturn(customerMock);
 
         RequestBuilder requestBuilder = MockMvcRequestBuilders.post("/api/v1/customers")
             .contentType(MediaType.APPLICATION_JSON)
             .accept(MediaType.APPLICATION_JSON)
-            .content(objectMapper.writeValueAsString(customerPostRequestBody));
+            .content(objectMapper.writeValueAsString(CustomerPostRequestBodyCreator.createPostRequestBodyWithoutNameCreator()));
 
         MvcResult mvcResult = mockMvc.perform(requestBuilder).andReturn();
 
@@ -102,16 +93,14 @@ class CustomerControllerWebLayerTest {
     @Test
     @DisplayName("Name cannont be shorter than 3 characters")
     void shouldReturnExceptionBadRequestWhenNameIsOnlyTwoCharacters() throws Exception {
-        customerPostRequestBody.setName("jo");
-
-        Customer customerMock = customerMapper.toCustomer(customerPostRequestBody);
+        Customer customerMock = customerMapper.toCustomer(CustomerPostRequestBodyCreator.createPostRequestBodyWithInvalidNameCreator());
         customerMock.setId(1L);
         when(customerService.save(any(CustomerPostRequestBody.class))).thenReturn(customerMock);
 
         RequestBuilder requestBuilder = MockMvcRequestBuilders.post("/api/v1/customers")
             .contentType(MediaType.APPLICATION_JSON)
             .accept(MediaType.APPLICATION_JSON)
-            .content(objectMapper.writeValueAsString(customerPostRequestBody));
+            .content(objectMapper.writeValueAsString(CustomerPostRequestBodyCreator.createPostRequestBodyWithInvalidNameCreator()));
 
         MvcResult mvcResult = mockMvc.perform(requestBuilder).andReturn();
 
