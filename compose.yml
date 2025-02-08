@@ -10,5 +10,11 @@ services:
     restart: always
     volumes:
       - postgres-data:/var/lib/postgresql/data
+  maildev:
+    image: maildev/maildev
+    ports:
+      - "1080:1080"
+      - "1025:1025"
+    restart: always
 volumes:
   postgres-data:
