@@ -13,10 +13,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
+import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
 import org.springframework.http.HttpStatus;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.DynamicPropertyRegistry;
-import org.springframework.test.context.DynamicPropertySource;
 import org.springframework.test.context.jdbc.Sql;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Container;
@@ -38,16 +37,10 @@ import static org.hamcrest.Matchers.*;
 class SpringBootRestApiApplicationTests {
 
     @Container
+    @ServiceConnection
     private static final PostgreSQLContainer<?> postgresSqlContainer = new PostgreSQLContainer<>(DockerImageName.parse(
         "postgres:15.10"
     ));
-
-    @DynamicPropertySource
-    static void configureProperties(DynamicPropertyRegistry registry) {
-        registry.add("spring.datasource.url", postgresSqlContainer::getJdbcUrl);
-        registry.add("spring.datasource.username", postgresSqlContainer::getUsername);
-        registry.add("spring.datasource.password", postgresSqlContainer::getPassword);
-    }
 
     @LocalServerPort
     private int port;
