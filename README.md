@@ -27,6 +27,14 @@ and about concepts involving rest api development.
 - SpringDoc - Open API 3
 - Docker
 
+# Features
+
+- User signup with email verification
+- User email verification flow (send verification code, verify user)
+- Global error handling
+- CRUD for customer resource
+- User login with JWT token(TODO)
+
 # Running
 
 ```bash
