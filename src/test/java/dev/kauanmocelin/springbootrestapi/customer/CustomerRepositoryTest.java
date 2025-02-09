@@ -6,6 +6,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.testcontainers.containers.PostgreSQLContainer;
@@ -38,12 +39,15 @@ class CustomerRepositoryTest {
     @Autowired
     private CustomerRepository customerRepository;
 
+    @Autowired
+    private TestEntityManager entityManager;
+
     @Test
     @DisplayName("Should persist customer when successful")
     void shouldPersistCustomerWhenSuccessful() {
         Customer customerToBeSaved = CustomerCreator.createCustomerToBeSaved();
 
-        Customer customerSaved = this.customerRepository.save(customerToBeSaved);
+        Customer customerSaved = customerRepository.save(customerToBeSaved);
 
         assertThat(customerSaved).isNotNull();
         assertThat(customerSaved.getId()).isNotNull();
@@ -54,11 +58,10 @@ class CustomerRepositoryTest {
     @DisplayName("Should update customer name when successful")
     void shouldUpdateCustomerNameWhenSuccessful() {
         Customer customerToBeSaved = CustomerCreator.createCustomerToBeSaved();
-
-        Customer customerSaved = this.customerRepository.save(customerToBeSaved);
-
+        Customer customerSaved = entityManager.persistAndFlush(customerToBeSaved);
         customerSaved.setName("Joao");
-        Customer customerUpdated = this.customerRepository.save(customerSaved);
+
+        Customer customerUpdated = customerRepository.save(customerSaved);
 
         assertThat(customerUpdated).isNotNull();
         assertThat(customerUpdated.getId()).isNotNull();
@@ -69,12 +72,10 @@ class CustomerRepositoryTest {
     @DisplayName("Should delete customer when successful")
     void shouldDeleteCustomerWhenSuccessful() {
         Customer customerToBeSaved = CustomerCreator.createCustomerToBeSaved();
+        Customer customerSaved = entityManager.persistAndFlush(customerToBeSaved);
+        entityManager.remove(customerSaved);
 
-        Customer customerSaved = this.customerRepository.save(customerToBeSaved);
-
-        this.customerRepository.delete(customerSaved);
-
-        Optional<Customer> customerOptional = this.customerRepository.findById(customerSaved.getId());
+        Optional<Customer> customerOptional = customerRepository.findById(customerSaved.getId());
 
         assertThat(customerOptional).isEmpty();
     }
@@ -83,11 +84,9 @@ class CustomerRepositoryTest {
     @DisplayName("Should find customer by email when successful")
     void shouldFindCustomerByEmailWhenSuccessful() {
         Customer customerToBeSaved = CustomerCreator.createCustomerToBeSaved();
-
-        Customer customerSaved = this.customerRepository.save(customerToBeSaved);
-
+        Customer customerSaved = entityManager.persistAndFlush(customerToBeSaved);
         String email = customerSaved.getEmail();
-        Optional<Customer> customerOptional = this.customerRepository.findByEmail(email);
+        Optional<Customer> customerOptional = customerRepository.findByEmail(email);
 
         assertThat(customerOptional)
                 .isPresent()
@@ -97,7 +96,7 @@ class CustomerRepositoryTest {
     @Test
     @DisplayName("Should not find customer by email when customer is not found")
     void shouldNotFindCustomerByEmailWhenCustomerIsNotFound() {
-        Optional<Customer> customerOptional = this.customerRepository.findByEmail("email@email.com");
+        Optional<Customer> customerOptional = customerRepository.findByEmail("email@email.com");
 
         assertThat(customerOptional).isEmpty();
     }
@@ -107,7 +106,7 @@ class CustomerRepositoryTest {
     void shouldThrowConstraintViolationExceptionOnSaveWhenEmailIsEmpty() {
         Customer customer = new Customer();
 
-        assertThatThrownBy(() -> this.customerRepository.save(customer))
+        assertThatThrownBy(() -> customerRepository.save(customer))
                 .isInstanceOf(ConstraintViolationException.class)
                 .hasMessageContaining("The customer e-mail cannot be empty");
     }
