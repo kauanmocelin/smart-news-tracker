@@ -34,6 +34,7 @@ and about concepts involving rest api development.
 - Global error handling
 - CRUD for customer resource
 - User login with JWT token(TODO)
+- Pagination for resource collection(TODO)
 
 # Running
 
