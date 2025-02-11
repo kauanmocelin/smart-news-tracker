@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public interface TokenRepository extends JpaRepository<Token, Integer> {
     @Query("""
-        SELECT token FROM Token token INNER JOIN AppUser appUser ON token.myAppUser.id = appUser.id
+        SELECT token FROM Token token INNER JOIN AppUser appUser ON token.appUser.id = appUser.id
         WHERE appUser.id = :userId AND (token.expired = false OR token.revoked = false)
         """)
     List<Token> findAllValidTokensByUsers(final Long userId);

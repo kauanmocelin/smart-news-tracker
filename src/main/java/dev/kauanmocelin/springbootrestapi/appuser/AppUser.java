@@ -1,20 +1,19 @@
 package dev.kauanmocelin.springbootrestapi.appuser;
 
+import dev.kauanmocelin.springbootrestapi.role.Role;
+import dev.kauanmocelin.springbootrestapi.token.Token;
 import jakarta.persistence.*;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 
-@Getter
-@Setter
+@Data
+@Builder
 @EqualsAndHashCode
+@AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "app_users")
@@ -27,23 +26,16 @@ public class AppUser implements UserDetails {
     private String lastName;
     private String email;
     private String password;
-    @Enumerated(EnumType.STRING)
-    private AppUserRole appUserRole;
-    private Boolean locked = false;
-    private Boolean enabled = false;
-
-    public AppUser(String firstName, String lastName, String email, String password, AppUserRole appUserRole) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.password = password;
-        this.appUserRole = appUserRole;
-    }
+    private Boolean locked;
+    private Boolean enabled;
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    private Collection<Role> roles = new ArrayList<>();
+    @OneToMany(mappedBy = "appUser")
+    private Collection<Token> tokens;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        SimpleGrantedAuthority simpleGrantedAuthority = new SimpleGrantedAuthority(appUserRole.name());
-        return Collections.singletonList(simpleGrantedAuthority);
+        return roles;
     }
 
     @Override

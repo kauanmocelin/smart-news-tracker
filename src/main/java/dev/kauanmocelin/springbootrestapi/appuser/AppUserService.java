@@ -6,7 +6,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -18,7 +18,7 @@ public class AppUserService implements UserDetailsService {
 
     private final AppUserRepository appUserRepository;
     private final ConfirmationTokenService confirmationTokenService;
-    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public UserDetails loadUserByUsername(final String email) throws UsernameNotFoundException {
@@ -34,7 +34,7 @@ public class AppUserService implements UserDetailsService {
             // TODO if email not confirmed send confirmation email.
             throw new IllegalStateException("email already taken");
         }
-        String encodedPassword = bCryptPasswordEncoder.encode(appUser.getPassword());
+        String encodedPassword = passwordEncoder.encode(appUser.getPassword());
         appUser.setPassword(encodedPassword);
 
         appUserRepository.save(appUser);

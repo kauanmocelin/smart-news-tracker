@@ -6,7 +6,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.flywaydb.core.internal.parser.TokenType;
 
 @Data
 @Builder
@@ -17,8 +16,8 @@ import org.flywaydb.core.internal.parser.TokenType;
 public class Token {
 
     @Id
-    @GeneratedValue
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String token;
     @Enumerated(EnumType.STRING)
     private TokenType tokenType;
@@ -26,7 +25,7 @@ public class Token {
     private boolean revoked;
 
     @ManyToOne
-    @JoinColumn(name = "my_app_users_id")
-    private AppUser myAppUser;
+    @JoinColumn(name = "app_user_id")
+    private AppUser appUser;
 
 }

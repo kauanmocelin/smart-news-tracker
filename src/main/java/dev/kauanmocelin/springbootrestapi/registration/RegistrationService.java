@@ -1,16 +1,25 @@
 package dev.kauanmocelin.springbootrestapi.registration;
 
 import dev.kauanmocelin.springbootrestapi.appuser.AppUser;
-import dev.kauanmocelin.springbootrestapi.appuser.AppUserRole;
+import dev.kauanmocelin.springbootrestapi.appuser.AppUserRepository;
 import dev.kauanmocelin.springbootrestapi.appuser.AppUserService;
 import dev.kauanmocelin.springbootrestapi.email.EmailSender;
 import dev.kauanmocelin.springbootrestapi.registration.token.ConfirmationToken;
 import dev.kauanmocelin.springbootrestapi.registration.token.ConfirmationTokenService;
+import dev.kauanmocelin.springbootrestapi.role.Role;
+import dev.kauanmocelin.springbootrestapi.role.RoleType;
+import dev.kauanmocelin.springbootrestapi.security.JwtService;
+import dev.kauanmocelin.springbootrestapi.token.Token;
+import dev.kauanmocelin.springbootrestapi.token.TokenRepository;
+import dev.kauanmocelin.springbootrestapi.token.TokenType;
 import lombok.AllArgsConstructor;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.Collections;
 
 @Service
 @AllArgsConstructor
@@ -20,20 +29,26 @@ public class RegistrationService {
     private final EmailValidator emailValidator;
     private final ConfirmationTokenService confirmationTokenService;
     private final EmailSender emailSender;
+    private final AuthenticationManager authenticationManager;
+    private final AppUserRepository appUserRepository;
+    private final JwtService jwtService;
+    private final TokenRepository tokenRepository;
 
     public String register(RegistrationRequest request) {
         boolean isValidEmail = emailValidator.test(request.getEmail());
-        if(!isValidEmail){
+        if (!isValidEmail) {
             throw new IllegalStateException("email not valid");
         }
         var token = appUserService.signUpUser(
-            new AppUser(
-                request.getFirstName(),
-                request.getLastName(),
-                request.getEmail(),
-                request.getPassword(),
-                AppUserRole.USER
-            )
+            AppUser.builder()
+                .firstName(request.getFirstName())
+                .lastName(request.getLastName())
+                .email(request.getEmail())
+                .password(request.getPassword())
+                .locked(false)
+                .enabled(false)
+                .roles(Collections.singletonList(new Role(null, RoleType.USER)))
+                .build()
         );
         String link = "http://localhost:8083/api/v1/registration/confirm?token=" + token;
         emailSender.send(
@@ -132,5 +147,28 @@ public class RegistrationService {
             "  </tbody></table><div class=\"yj6qo\"></div><div class=\"adL\">\n" +
             "\n" +
             "</div></div>";
+    }
+
+    public LoginResponse login(LoginRequest request) {
+        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
+        var user = appUserRepository.findByEmail(request.getUsername()).orElseThrow();
+        final var jwtToken = jwtService.generateToken(user);
+        final var refreshJwtToken = jwtService.generateRefreshToken(user);
+        //revokeAllUserTokens(user);
+        saveUserToken(user, jwtToken);
+        return LoginResponse.builder()
+            .accessToken(jwtToken)
+            .refreshToken(refreshJwtToken)
+            .build();
+    }
+
+    private void saveUserToken(AppUser appUser, String jwtToken) {
+        Token token = Token.builder()
+            .appUser(appUser)
+            .token(jwtToken)
+            .tokenType(TokenType.BEARER)
+            .revoked(false)
+            .expired(false).build();
+        tokenRepository.save(token);
     }
 }
