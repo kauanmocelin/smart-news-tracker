@@ -1,4 +1,4 @@
-package dev.kauanmocelin.springbootrestapi.authentication.registration;
+package dev.kauanmocelin.springbootrestapi.authentication.registration.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

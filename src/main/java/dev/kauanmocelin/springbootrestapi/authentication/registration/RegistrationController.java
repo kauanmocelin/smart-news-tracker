@@ -1,5 +1,8 @@
 package dev.kauanmocelin.springbootrestapi.authentication.registration;
 
+import dev.kauanmocelin.springbootrestapi.authentication.registration.request.LoginRequest;
+import dev.kauanmocelin.springbootrestapi.authentication.registration.request.LoginResponse;
+import dev.kauanmocelin.springbootrestapi.authentication.registration.request.RegistrationRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

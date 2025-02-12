@@ -7,6 +7,9 @@ import dev.kauanmocelin.springbootrestapi.appuser.role.RoleRepository;
 import dev.kauanmocelin.springbootrestapi.appuser.role.RoleType;
 import dev.kauanmocelin.springbootrestapi.authentication.registration.code.RegistrationCode;
 import dev.kauanmocelin.springbootrestapi.authentication.registration.code.RegistrationCodeService;
+import dev.kauanmocelin.springbootrestapi.authentication.registration.request.LoginRequest;
+import dev.kauanmocelin.springbootrestapi.authentication.registration.request.LoginResponse;
+import dev.kauanmocelin.springbootrestapi.authentication.registration.request.RegistrationRequest;
 import dev.kauanmocelin.springbootrestapi.authentication.token.Token;
 import dev.kauanmocelin.springbootrestapi.authentication.token.TokenRepository;
 import dev.kauanmocelin.springbootrestapi.authentication.token.TokenType;
@@ -34,7 +37,6 @@ public class RegistrationService {
     private final JwtService jwtService;
     private final TokenRepository tokenRepository;
     private final RoleRepository roleRepository;
-
 
     public String register(RegistrationRequest request) {
         boolean isValidEmail = emailValidator.test(request.getEmail());

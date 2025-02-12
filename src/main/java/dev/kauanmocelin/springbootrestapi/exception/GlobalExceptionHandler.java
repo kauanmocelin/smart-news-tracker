@@ -1,9 +1,5 @@
-package dev.kauanmocelin.springbootrestapi.customer.handler;
+package dev.kauanmocelin.springbootrestapi.exception;
 
-import dev.kauanmocelin.springbootrestapi.customer.exception.BadRequestException;
-import dev.kauanmocelin.springbootrestapi.customer.exception.BadRequestExceptionDetails;
-import dev.kauanmocelin.springbootrestapi.customer.exception.FieldErrorMessage;
-import dev.kauanmocelin.springbootrestapi.customer.exception.ValidationExceptionDetails;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;

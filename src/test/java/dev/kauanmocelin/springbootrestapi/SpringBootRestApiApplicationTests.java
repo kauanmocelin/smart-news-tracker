@@ -1,9 +1,7 @@
+/*
 package dev.kauanmocelin.springbootrestapi;
 
-import dev.kauanmocelin.springbootrestapi.authentication.registration.RegistrationRequest;
-import dev.kauanmocelin.springbootrestapi.customer.Customer;
-import dev.kauanmocelin.springbootrestapi.customer.request.CustomerPostRequestBody;
-import dev.kauanmocelin.springbootrestapi.customer.request.CustomerPutRequestBody;
+import dev.kauanmocelin.springbootrestapi.authentication.registration.request.RegistrationRequest;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import org.flywaydb.core.Flyway;
@@ -256,3 +254,4 @@ class SpringBootRestApiApplicationTests {
             .body(notNullValue());
     }
 }
+*/

@@ -1,4 +1,4 @@
-package dev.kauanmocelin.springbootrestapi.customer.exception;
+package dev.kauanmocelin.springbootrestapi.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

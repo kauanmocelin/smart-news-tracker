@@ -1,4 +1,4 @@
-package dev.kauanmocelin.springbootrestapi.authentication.registration;
+package dev.kauanmocelin.springbootrestapi.authentication.registration.request;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
