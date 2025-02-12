@@ -27,13 +27,18 @@ public class SecurityFilterChainConfiguration {
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity
             .csrf(AbstractHttpConfigurer::disable)
-            .authorizeHttpRequests(registry -> {
-                registry.requestMatchers("/api/v1/auth/**").permitAll();
-                registry.requestMatchers(HttpMethod.GET, "/api/v1/demo-controller/**").hasAuthority("USER");
-                registry.anyRequest().authenticated();
-            })
-            .sessionManagement(sessionManagement ->
-                sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+            .authorizeHttpRequests(registry -> registry
+                .requestMatchers("/api/v1/auth/**").permitAll()
+                .requestMatchers(HttpMethod.GET, "/api/v1/customers/**").hasAuthority("USER")
+                .requestMatchers(HttpMethod.POST, "/api/v1/customers/**").hasAuthority("ADMIN")
+                .requestMatchers(HttpMethod.PUT, "/api/v1/customers/**").hasAuthority("ADMIN")
+                .requestMatchers(HttpMethod.DELETE, "/api/v1/customers/**").hasAuthority("ADMIN")
+                .requestMatchers("/v3/api-docs/**").permitAll()
+                .requestMatchers("/swagger-ui/**").permitAll()
+                .anyRequest().authenticated()
+            )
+            .sessionManagement(sessionManagement -> sessionManagement
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             )
             .authenticationProvider(authenticationProvider)
             .addFilterBefore(
@@ -49,18 +54,4 @@ public class SecurityFilterChainConfiguration {
             )
             .build();
     }
-
-//    @Bean
-//    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-//        return http
-//            .csrf(AbstractHttpConfigurer::disable)
-//            .httpBasic(Customizer.withDefaults())
-//            .authorizeHttpRequests(auth -> auth
-//                .requestMatchers("/api/v*/registration/**").permitAll()
-//                .requestMatchers("/v3/api-docs/**").permitAll()
-//                .requestMatchers("/swagger-ui/**").permitAll()
-//                .anyRequest().authenticated()
-//            )
-//            .build();
-//    }
 }
