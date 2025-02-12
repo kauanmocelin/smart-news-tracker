@@ -1,11 +1,10 @@
-# Rest Api Spring Boot
+# SmartNews Tracker
 
 [![NPM](https://img.shields.io/npm/l/react)](https://github.com/kauanmocelin/rest-api-springboot/blob/main/LICENSE)
 
 # About
 
-This is a simple rest api(CRUD) using Spring Boot. The main objective was learning about spring ecosystem and your tools
-and about concepts involving rest api development.
+SmartNews Tracker is an API that allows users to monitor news based on specific keywords. The system periodically queries a news API and sends email alerts whenever new articles matching the keywords are found.
 
 # Prerequisites
 
