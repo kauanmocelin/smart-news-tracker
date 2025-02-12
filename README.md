@@ -14,26 +14,21 @@ SmartNews Tracker is an API that allows users to monitor news based on specific 
 # Technologies
 
 - Java 21
-- Spring Boot v3
-- Spring Data JPA
-- Spring Security
+- Spring Boot/Data JPA/Security
 - Flyway
-- Unit Testing
-- Testcontainers
 - Maven
-- Lombok
-- MapStruct
-- SpringDoc - Open API 3
+- Lombok/MapStruct
+- Testcontainers
 - Docker
+- SpringDoc - Open API 3
 
 # Features
 
 - User signup with email verification
-- User email verification flow (send verification code, verify user)
-- Global error handling
-- CRUD for customer resource
-- User login with JWT token(TODO)
-- Pagination for resource collection(TODO)
+- User email verification flow (send verification link, verify user)
+- User login with JWT token/refresh token
+- User logout 
+- Users account can be managed by Admin
 
 # Running
 
