@@ -28,7 +28,7 @@ public class AppUser implements UserDetails {
     private String password;
     private Boolean locked;
     private Boolean enabled;
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @ManyToMany(fetch = FetchType.EAGER)
     private Collection<Role> roles = new ArrayList<>();
     @OneToMany(mappedBy = "appUser")
     private Collection<Token> tokens;

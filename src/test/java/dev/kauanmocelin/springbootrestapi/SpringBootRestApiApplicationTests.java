@@ -228,7 +228,7 @@ class SpringBootRestApiApplicationTests {
             .when()
             .get("/api/v1/customers")
             .then()
-            .statusCode(HttpStatus.UNAUTHORIZED.value());
+            .statusCode(HttpStatus.FORBIDDEN.value());
     }
 
     @Test
@@ -243,14 +243,14 @@ class SpringBootRestApiApplicationTests {
             .contentType(ContentType.JSON)
             .body(registrationRequest)
             .when()
-            .post("/api/v1/registration")
+            .post("/api/v1/auth/register")
             .then()
             .statusCode(HttpStatus.OK.value())
             .body(notNullValue())
             .extract().body().asString();
         given()
             .when()
-            .get("/api/v1/registration/confirm?token={validationToken}", validationToken)
+            .get("/api/v1/auth/verify?token={validationToken}", validationToken)
             .then()
             .statusCode(HttpStatus.OK.value())
             .body(notNullValue());

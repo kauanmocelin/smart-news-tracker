@@ -3,7 +3,7 @@ package dev.kauanmocelin.springbootrestapi.authentication.registration;
 import dev.kauanmocelin.springbootrestapi.appuser.AppUser;
 import dev.kauanmocelin.springbootrestapi.appuser.AppUserRepository;
 import dev.kauanmocelin.springbootrestapi.appuser.AppUserService;
-import dev.kauanmocelin.springbootrestapi.appuser.role.Role;
+import dev.kauanmocelin.springbootrestapi.appuser.role.RoleRepository;
 import dev.kauanmocelin.springbootrestapi.appuser.role.RoleType;
 import dev.kauanmocelin.springbootrestapi.authentication.registration.code.RegistrationCode;
 import dev.kauanmocelin.springbootrestapi.authentication.registration.code.RegistrationCodeService;
@@ -33,6 +33,8 @@ public class RegistrationService {
     private final AppUserRepository appUserRepository;
     private final JwtService jwtService;
     private final TokenRepository tokenRepository;
+    private final RoleRepository roleRepository;
+
 
     public String register(RegistrationRequest request) {
         boolean isValidEmail = emailValidator.test(request.getEmail());
@@ -47,7 +49,7 @@ public class RegistrationService {
                 .password(request.getPassword())
                 .locked(false)
                 .enabled(false)
-                .roles(Collections.singletonList(new Role(null, RoleType.USER)))
+                .roles(Collections.singletonList(roleRepository.findByType(RoleType.USER)))
                 .build()
         );
         String link = "http://localhost:8083/api/v1/registration/confirm?token=" + token;

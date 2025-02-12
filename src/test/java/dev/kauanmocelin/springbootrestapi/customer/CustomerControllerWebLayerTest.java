@@ -5,12 +5,16 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import dev.kauanmocelin.springbootrestapi.customer.mapper.CustomerMapper;
 import dev.kauanmocelin.springbootrestapi.customer.mapper.CustomerMapperImpl;
 import dev.kauanmocelin.springbootrestapi.customer.request.CustomerPostRequestBody;
+import dev.kauanmocelin.springbootrestapi.security.JwtAuthenticationFilter;
+import dev.kauanmocelin.springbootrestapi.security.JwtService;
 import dev.kauanmocelin.springbootrestapi.util.CustomerPostRequestBodyCreator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
+import org.springframework.boot.autoconfigure.security.servlet.SecurityFilterAutoConfiguration;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.HttpStatus;
@@ -26,7 +30,8 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @WebMvcTest(value = CustomerController.class,
-    excludeAutoConfiguration = {SecurityAutoConfiguration.class})
+    excludeAutoConfiguration = {SecurityAutoConfiguration.class, SecurityFilterAutoConfiguration.class})
+@AutoConfigureMockMvc(addFilters = false)
 @Import(CustomerMapperImpl.class)
 class CustomerControllerWebLayerTest {
 
@@ -38,6 +43,12 @@ class CustomerControllerWebLayerTest {
 
     @MockitoBean
     private CustomerService customerService;
+
+    @MockitoBean
+    JwtService jwtService;
+
+    @MockitoBean
+    private JwtAuthenticationFilter jwtAuthenticationFilter;
 
     private ObjectMapper objectMapper;
 
