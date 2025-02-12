@@ -1,7 +1,7 @@
 package dev.kauanmocelin.springbootrestapi.security;
 
-import dev.kauanmocelin.springbootrestapi.token.Token;
-import dev.kauanmocelin.springbootrestapi.token.TokenRepository;
+import dev.kauanmocelin.springbootrestapi.authentication.token.Token;
+import dev.kauanmocelin.springbootrestapi.authentication.token.TokenRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;

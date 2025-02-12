@@ -1,7 +1,7 @@
 package dev.kauanmocelin.springbootrestapi.appuser;
 
-import dev.kauanmocelin.springbootrestapi.role.Role;
-import dev.kauanmocelin.springbootrestapi.token.Token;
+import dev.kauanmocelin.springbootrestapi.appuser.role.Role;
+import dev.kauanmocelin.springbootrestapi.authentication.token.Token;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;

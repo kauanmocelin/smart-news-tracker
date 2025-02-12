@@ -1,4 +1,4 @@
-package dev.kauanmocelin.springbootrestapi.registration.code;
+package dev.kauanmocelin.springbootrestapi.authentication.registration.code;
 
 import dev.kauanmocelin.springbootrestapi.appuser.AppUser;
 import jakarta.persistence.*;

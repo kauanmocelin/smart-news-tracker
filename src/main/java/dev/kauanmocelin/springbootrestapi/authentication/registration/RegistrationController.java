@@ -1,4 +1,4 @@
-package dev.kauanmocelin.springbootrestapi.registration;
+package dev.kauanmocelin.springbootrestapi.authentication.registration;
 
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;

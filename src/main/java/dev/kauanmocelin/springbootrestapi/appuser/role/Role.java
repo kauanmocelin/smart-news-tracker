@@ -1,4 +1,4 @@
-package dev.kauanmocelin.springbootrestapi.role;
+package dev.kauanmocelin.springbootrestapi.appuser.role;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

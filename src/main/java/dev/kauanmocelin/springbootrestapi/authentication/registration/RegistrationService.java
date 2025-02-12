@@ -1,17 +1,17 @@
-package dev.kauanmocelin.springbootrestapi.registration;
+package dev.kauanmocelin.springbootrestapi.authentication.registration;
 
 import dev.kauanmocelin.springbootrestapi.appuser.AppUser;
 import dev.kauanmocelin.springbootrestapi.appuser.AppUserRepository;
 import dev.kauanmocelin.springbootrestapi.appuser.AppUserService;
+import dev.kauanmocelin.springbootrestapi.appuser.role.Role;
+import dev.kauanmocelin.springbootrestapi.appuser.role.RoleType;
+import dev.kauanmocelin.springbootrestapi.authentication.registration.code.RegistrationCode;
+import dev.kauanmocelin.springbootrestapi.authentication.registration.code.RegistrationCodeService;
+import dev.kauanmocelin.springbootrestapi.authentication.token.Token;
+import dev.kauanmocelin.springbootrestapi.authentication.token.TokenRepository;
+import dev.kauanmocelin.springbootrestapi.authentication.token.TokenType;
 import dev.kauanmocelin.springbootrestapi.email.EmailSender;
-import dev.kauanmocelin.springbootrestapi.registration.code.RegistrationCode;
-import dev.kauanmocelin.springbootrestapi.registration.code.RegistrationCodeService;
-import dev.kauanmocelin.springbootrestapi.role.Role;
-import dev.kauanmocelin.springbootrestapi.role.RoleType;
 import dev.kauanmocelin.springbootrestapi.security.JwtService;
-import dev.kauanmocelin.springbootrestapi.token.Token;
-import dev.kauanmocelin.springbootrestapi.token.TokenRepository;
-import dev.kauanmocelin.springbootrestapi.token.TokenType;
 import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

@@ -1,4 +1,4 @@
-package dev.kauanmocelin.springbootrestapi.registration.code;
+package dev.kauanmocelin.springbootrestapi.authentication.registration.code;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

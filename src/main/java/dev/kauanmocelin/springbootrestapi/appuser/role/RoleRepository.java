@@ -1,4 +1,4 @@
-package dev.kauanmocelin.springbootrestapi.role;
+package dev.kauanmocelin.springbootrestapi.appuser.role;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

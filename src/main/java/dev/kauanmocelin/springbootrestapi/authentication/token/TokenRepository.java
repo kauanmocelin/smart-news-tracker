@@ -1,4 +1,4 @@
-package dev.kauanmocelin.springbootrestapi.token;
+package dev.kauanmocelin.springbootrestapi.authentication.token;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

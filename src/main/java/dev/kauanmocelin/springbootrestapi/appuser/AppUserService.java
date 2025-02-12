@@ -1,7 +1,7 @@
 package dev.kauanmocelin.springbootrestapi.appuser;
 
-import dev.kauanmocelin.springbootrestapi.registration.code.RegistrationCode;
-import dev.kauanmocelin.springbootrestapi.registration.code.RegistrationCodeService;
+import dev.kauanmocelin.springbootrestapi.authentication.registration.code.RegistrationCode;
+import dev.kauanmocelin.springbootrestapi.authentication.registration.code.RegistrationCodeService;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

@@ -1,4 +1,4 @@
-package dev.kauanmocelin.springbootrestapi.token;
+package dev.kauanmocelin.springbootrestapi.authentication.token;
 
 import dev.kauanmocelin.springbootrestapi.appuser.AppUser;
 import jakarta.persistence.*;

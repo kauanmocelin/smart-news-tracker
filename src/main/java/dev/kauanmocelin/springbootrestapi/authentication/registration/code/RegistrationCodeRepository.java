@@ -1,4 +1,4 @@
-package dev.kauanmocelin.springbootrestapi.registration.code;
+package dev.kauanmocelin.springbootrestapi.authentication.registration.code;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
