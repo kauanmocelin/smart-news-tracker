@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>dev.kauanmocelin</groupId>
-    <artifactId>rest-api-springboot</artifactId>
+    <artifactId>smart-news-tracker</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>rest-api-springboot</name>
-    <description>Demo project for rest api with spring boot</description>
+    <name>smart-news-tracker</name>
+    <description>An API that monitor news based on specific keywords.</description>
 
     <properties>
         <java.version>21</java.version>
