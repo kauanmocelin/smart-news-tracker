@@ -43,7 +43,7 @@ public class CustomerController {
         return new ResponseEntity<>(customerService.save(customerPostRequestBody), HttpStatus.CREATED);
     }
 
-    @DeleteMapping(path = "{customer-id}")
+    @DeleteMapping(path = "/{customer-id}")
     @Operation(summary = "Delete customer", description = "Delete customer", tags = {"customer"})
     @ApiResponses(value = {
             @ApiResponse(responseCode = "204", description = "Successful operation"),
