@@ -4,8 +4,8 @@ import dev.kauanmocelin.springbootrestapi.appuser.AppUser;
 import dev.kauanmocelin.springbootrestapi.appuser.AppUserRepository;
 import dev.kauanmocelin.springbootrestapi.appuser.AppUserService;
 import dev.kauanmocelin.springbootrestapi.email.EmailSender;
-import dev.kauanmocelin.springbootrestapi.registration.token.ConfirmationToken;
-import dev.kauanmocelin.springbootrestapi.registration.token.ConfirmationTokenService;
+import dev.kauanmocelin.springbootrestapi.registration.code.RegistrationCode;
+import dev.kauanmocelin.springbootrestapi.registration.code.RegistrationCodeService;
 import dev.kauanmocelin.springbootrestapi.role.Role;
 import dev.kauanmocelin.springbootrestapi.role.RoleType;
 import dev.kauanmocelin.springbootrestapi.security.JwtService;
@@ -27,7 +27,7 @@ public class RegistrationService {
 
     private final AppUserService appUserService;
     private final EmailValidator emailValidator;
-    private final ConfirmationTokenService confirmationTokenService;
+    private final RegistrationCodeService registrationCodeService;
     private final EmailSender emailSender;
     private final AuthenticationManager authenticationManager;
     private final AppUserRepository appUserRepository;
@@ -59,24 +59,24 @@ public class RegistrationService {
 
     @Transactional
     public String confirmToken(String token) {
-        ConfirmationToken confirmationToken = confirmationTokenService
+        RegistrationCode registrationCode = registrationCodeService
             .getToken(token)
             .orElseThrow(() ->
                 new IllegalStateException("token not found"));
 
-        if (confirmationToken.getConfirmedAt() != null) {
+        if (registrationCode.getConfirmedAt() != null) {
             throw new IllegalStateException("email already confirmed");
         }
 
-        LocalDateTime expiredAt = confirmationToken.getExpiresAt();
+        LocalDateTime expiredAt = registrationCode.getExpiresAt();
 
         if (expiredAt.isBefore(LocalDateTime.now())) {
             throw new IllegalStateException("token expired");
         }
 
-        confirmationTokenService.setConfirmedAt(token);
+        registrationCodeService.setConfirmedAt(token);
         appUserService.enableAppUser(
-            confirmationToken.getAppUser().getEmail());
+            registrationCode.getAppUser().getEmail());
         return "confirmed";
     }
 

@@ -1,4 +1,4 @@
-package dev.kauanmocelin.springbootrestapi.registration.token;
+package dev.kauanmocelin.springbootrestapi.registration.code;
 
 import dev.kauanmocelin.springbootrestapi.appuser.AppUser;
 import jakarta.persistence.*;
@@ -14,8 +14,8 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "confirmation_tokens")
-public class ConfirmationToken {
+@Table(name = "registration_codes")
+public class RegistrationCode {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,7 +34,7 @@ public class ConfirmationToken {
     )
     private AppUser appUser;
 
-    public ConfirmationToken(String token, LocalDateTime createdAt, LocalDateTime expiresAt, AppUser appUser) {
+    public RegistrationCode(String token, LocalDateTime createdAt, LocalDateTime expiresAt, AppUser appUser) {
         this.token = token;
         this.createdAt = createdAt;
         this.expiresAt = expiresAt;

@@ -1,4 +1,4 @@
-CREATE TABLE confirmation_tokens (
+CREATE TABLE registration_codes (
     id BIGSERIAL PRIMARY KEY,
     token VARCHAR(255) NOT NULL,
     created_at TIMESTAMP(6),

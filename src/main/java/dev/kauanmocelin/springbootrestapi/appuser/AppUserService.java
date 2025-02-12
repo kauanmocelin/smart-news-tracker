@@ -1,7 +1,7 @@
 package dev.kauanmocelin.springbootrestapi.appuser;
 
-import dev.kauanmocelin.springbootrestapi.registration.token.ConfirmationToken;
-import dev.kauanmocelin.springbootrestapi.registration.token.ConfirmationTokenService;
+import dev.kauanmocelin.springbootrestapi.registration.code.RegistrationCode;
+import dev.kauanmocelin.springbootrestapi.registration.code.RegistrationCodeService;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -17,7 +17,7 @@ import java.util.UUID;
 public class AppUserService implements UserDetailsService {
 
     private final AppUserRepository appUserRepository;
-    private final ConfirmationTokenService confirmationTokenService;
+    private final RegistrationCodeService registrationCodeService;
     private final PasswordEncoder passwordEncoder;
 
     @Override
@@ -40,13 +40,13 @@ public class AppUserService implements UserDetailsService {
         appUserRepository.save(appUser);
 
         final var token = UUID.randomUUID().toString();
-        ConfirmationToken confirmationToken = new ConfirmationToken(
+        RegistrationCode registrationCode = new RegistrationCode(
             token,
             LocalDateTime.now(),
             LocalDateTime.now().plusMinutes(15),
             appUser
         );
-        confirmationTokenService.saveConfirmationToken(confirmationToken);
+        registrationCodeService.saveConfirmationToken(registrationCode);
         return token;
     }
 

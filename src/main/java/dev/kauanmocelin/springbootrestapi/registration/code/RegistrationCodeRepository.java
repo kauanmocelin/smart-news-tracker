@@ -1,4 +1,4 @@
-package dev.kauanmocelin.springbootrestapi.registration.token;
+package dev.kauanmocelin.springbootrestapi.registration.code;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -10,13 +10,13 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Repository
-public interface ConfirmationTokenRepository extends JpaRepository<ConfirmationToken, Long> {
+public interface RegistrationCodeRepository extends JpaRepository<RegistrationCode, Long> {
 
-    Optional<ConfirmationToken> findByToken(final String token);
+    Optional<RegistrationCode> findByToken(final String token);
 
     @Transactional
     @Modifying
-    @Query("UPDATE ConfirmationToken c " +
+    @Query("UPDATE RegistrationCode c " +
         "SET c.confirmedAt = ?2 " +
         "WHERE c.token = ?1")
     int updateConfirmedAt(String token, LocalDateTime confirmedAt);
