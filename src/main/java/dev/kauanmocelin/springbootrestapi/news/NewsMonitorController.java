@@ -1,7 +1,9 @@
 package dev.kauanmocelin.springbootrestapi.news;
 
 import dev.kauanmocelin.springbootrestapi.news.request.KeywordRequest;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,7 +18,8 @@ public class NewsMonitorController {
     private final NewsMonitorService newsMonitorService;
 
     @PostMapping("/keyword")
-    public ResponseEntity<String> registerKeyword(@RequestBody final KeywordRequest request) {
-        return ResponseEntity.ok(newsMonitorService.register(request));
+    public ResponseEntity<Void> registerKeyword(@RequestBody @Valid final KeywordRequest request) {
+        newsMonitorService.register(request);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 }

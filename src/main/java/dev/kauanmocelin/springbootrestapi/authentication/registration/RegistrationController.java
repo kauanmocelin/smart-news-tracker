@@ -3,6 +3,7 @@ package dev.kauanmocelin.springbootrestapi.authentication.registration;
 import dev.kauanmocelin.springbootrestapi.authentication.registration.request.LoginRequest;
 import dev.kauanmocelin.springbootrestapi.authentication.registration.request.LoginResponse;
 import dev.kauanmocelin.springbootrestapi.authentication.registration.request.RegistrationRequest;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +17,7 @@ public class RegistrationController {
     private final RegistrationService registrationService;
 
     @PostMapping("/register")
-    public ResponseEntity<String> register(@RequestBody RegistrationRequest request) {
+    public ResponseEntity<String> register(@RequestBody @Valid RegistrationRequest request) {
         final var registrationCode = registrationService.register(request);
         final var uri =  ServletUriComponentsBuilder
             .fromCurrentContextPath()
@@ -33,7 +34,7 @@ public class RegistrationController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<LoginResponse> authenticate(@RequestBody LoginRequest request) {
+    public ResponseEntity<LoginResponse> authenticate(@RequestBody @Valid LoginRequest request) {
         return ResponseEntity.ok(registrationService.login(request));
     }
 
