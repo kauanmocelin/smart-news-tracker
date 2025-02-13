@@ -1,0 +1,61 @@
+{
+  "mappings": [
+    {
+      "request": {
+        "method": "GET",
+        "urlPathPattern": "/everything"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "jsonBody": {
+          "status": "ok",
+          "totalResults": 3,
+          "articles": [
+            {
+              "source": {
+                "id": null,
+                "name": "Creston.blog"
+              },
+              "author": "Creston Bunch",
+              "title": "WASM Will Replace Containers",
+              "description": "WebAssembly is a true write-once-run-anywhere experience.",
+              "url": "https://creston.blog/wasm-will-replace-containers/",
+              "urlToImage": "https://creston.blog/content/images/size/w1200/2025/02/BA3A1573-1.jpg",
+              "publishedAt": "2025-02-12T01:24:51Z",
+              "content": "In the year 2030, no one will remember Kubernetes.\r\nPortability\r\nContainers solved a lot of important problems in software development. We had VMs before containers, but they were not as ergonomic to… [+4018 chars]"
+            },
+            {
+              "source": {
+                "id": null,
+                "name": "Techtalksweekly.io"
+              },
+              "author": "Tech Talks Weekly",
+              "title": "100 Most-Watched Software Engineering Talks of 2024",
+              "description": "A complete list of the top 100 most watched talks of 2024 ordered by the number of views.",
+              "url": "https://www.techtalksweekly.io/p/100-most-watched-software-engineering",
+              "urlToImage": "https://substackcdn.com/image/fetch/w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fa66429d4-5569-43f8-bd43-aec28093f9ec_420x300.png",
+              "publishedAt": "2025-02-12T15:55:20Z",
+              "content": "Following tradition, I put together a complete list of the top 100 most watched Software Engineering talks presented in 2024 across almost every Software Engineering conference around the world.Pleas… [+12062 chars]"
+            },
+            {
+              "source": {
+                "id": null,
+                "name": "Javacodegeeks.com"
+              },
+              "author": "Yatin Batra",
+              "title": "Java Exception With Null Message Handling",
+              "description": "When developing Java applications, handling exceptions is crucial for debugging and ensuring robust code. Usually, when an exception is thrown in Java, it contains a message describing the issue, which helps developers diagnose and fix problems. However, ther…",
+              "url": "https://www.javacodegeeks.com/java-exception-with-null-message-handling.html",
+              "urlToImage": "https://www.javacodegeeks.com/wp-content/uploads/2012/10/java-logo.jpg",
+              "publishedAt": "2025-02-12T16:29:00Z",
+              "content": "When developing Java applications, handling exceptions is crucial for debugging and ensuring robust code. Usually, when an exception is thrown in Java, it contains a message describing the issue, whi… [+6130 chars]"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
