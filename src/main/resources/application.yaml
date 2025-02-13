@@ -41,3 +41,7 @@ application:
       expiration: 3600000 # 1 hour
       refresh-token:
         expiration: 604800000 #7 days
+news:
+  api:
+    url: "https://newsapi.org/v2"
+    api-key: ${NEWS_API_KEY}

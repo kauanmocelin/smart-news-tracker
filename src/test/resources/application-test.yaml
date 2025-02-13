@@ -10,4 +10,7 @@ logging:
     org.hibernate.orm.jdbc.bind: trace
     org.springframework.test.context.jdbc: debug
     org.springframework.jdbc.datasource.init.jdbc: debug
-
+news:
+  api:
+    url: "https://newsapi.org/v2"
+    api-key: ${NEWS_API_KEY}
