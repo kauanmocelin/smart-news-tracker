@@ -1,4 +1,4 @@
-package dev.kauanmocelin.springbootrestapi.security;
+package dev.kauanmocelin.springbootrestapi.common.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

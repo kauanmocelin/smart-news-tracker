@@ -28,4 +28,10 @@ public class RegistrationController {
     public ResponseEntity<LoginResponse> authenticate(@RequestBody LoginRequest request) {
         return ResponseEntity.ok(registrationService.login(request));
     }
+
+    //    @PostMapping
+//    @Operation(summary = "Register new customer", description = "Register new customer", tags = {"customer"})
+//    public ResponseEntity<Customer> registerNewCustomer(@RequestBody @Valid CustomerPostRequestBody customerPostRequestBody) {
+//        return new ResponseEntity<>(appUserService.save(customerPostRequestBody), HttpStatus.CREATED);
+//    }
 }

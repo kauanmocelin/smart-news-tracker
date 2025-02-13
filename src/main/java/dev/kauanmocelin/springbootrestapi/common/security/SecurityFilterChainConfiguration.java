@@ -1,4 +1,4 @@
-package dev.kauanmocelin.springbootrestapi.security;
+package dev.kauanmocelin.springbootrestapi.common.security;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -33,6 +33,7 @@ public class SecurityFilterChainConfiguration {
                 .requestMatchers(HttpMethod.POST, "/api/v1/customers/**").hasAuthority("ADMIN")
                 .requestMatchers(HttpMethod.PUT, "/api/v1/customers/**").hasAuthority("ADMIN")
                 .requestMatchers(HttpMethod.DELETE, "/api/v1/customers/**").hasAuthority("ADMIN")
+                .requestMatchers("/api/v1/news-monitor/**").hasAuthority("USER")
                 .requestMatchers("/v3/api-docs/**").permitAll()
                 .requestMatchers("/swagger-ui/**").permitAll()
                 .anyRequest().authenticated()

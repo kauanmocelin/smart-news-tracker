@@ -1,4 +1,4 @@
-package dev.kauanmocelin.springbootrestapi.security;
+package dev.kauanmocelin.springbootrestapi.common.security;
 
 import dev.kauanmocelin.springbootrestapi.appuser.AppUserService;
 import lombok.RequiredArgsConstructor;

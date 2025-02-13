@@ -1,4 +1,4 @@
-package dev.kauanmocelin.springbootrestapi.exception;
+package dev.kauanmocelin.springbootrestapi.common.exception;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;

@@ -14,7 +14,7 @@ import dev.kauanmocelin.springbootrestapi.authentication.token.Token;
 import dev.kauanmocelin.springbootrestapi.authentication.token.TokenRepository;
 import dev.kauanmocelin.springbootrestapi.authentication.token.TokenType;
 import dev.kauanmocelin.springbootrestapi.email.EmailSender;
-import dev.kauanmocelin.springbootrestapi.security.JwtService;
+import dev.kauanmocelin.springbootrestapi.common.security.JwtService;
 import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

@@ -1,4 +1,4 @@
-package dev.kauanmocelin.springbootrestapi.security;
+package dev.kauanmocelin.springbootrestapi.common.security;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

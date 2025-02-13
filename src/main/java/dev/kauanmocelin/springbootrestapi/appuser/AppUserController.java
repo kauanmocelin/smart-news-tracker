@@ -57,11 +57,4 @@ public class AppUserController {
         appUserService.replace(appUserPutRequestBody);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
-
-
-//    @PostMapping
-//    @Operation(summary = "Register new customer", description = "Register new customer", tags = {"customer"})
-//    public ResponseEntity<Customer> registerNewCustomer(@RequestBody @Valid CustomerPostRequestBody customerPostRequestBody) {
-//        return new ResponseEntity<>(appUserService.save(customerPostRequestBody), HttpStatus.CREATED);
-//    }
 }

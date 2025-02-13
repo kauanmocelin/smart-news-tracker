@@ -1,4 +1,4 @@
-package dev.kauanmocelin.springbootrestapi.exception;
+package dev.kauanmocelin.springbootrestapi.common.exception;
 
 import lombok.Data;
 import lombok.experimental.SuperBuilder;

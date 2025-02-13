@@ -4,7 +4,7 @@ import dev.kauanmocelin.springbootrestapi.appuser.mapper.AppUserMapper;
 import dev.kauanmocelin.springbootrestapi.appuser.request.AppUserPutRequestBody;
 import dev.kauanmocelin.springbootrestapi.authentication.registration.code.RegistrationCode;
 import dev.kauanmocelin.springbootrestapi.authentication.registration.code.RegistrationCodeService;
-import dev.kauanmocelin.springbootrestapi.exception.BadRequestException;
+import dev.kauanmocelin.springbootrestapi.common.exception.BadRequestException;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -34,14 +34,6 @@ public class AppUserService implements UserDetailsService {
         return appUserRepository.findById(appUserId)
             .orElseThrow(() -> new BadRequestException("user with id " + appUserId + " does not exists"));
     }
-
-//    public AppUser save(AppUserPostRequestBody appUserPostRequestBody) {
-//        Optional<AppUser> customerOptional = appUserRepository.findByEmail(appUserPostRequestBody.email());
-//        if (customerOptional.isPresent()) {
-//            throw new BadRequestException("email taken");
-//        }
-//        return appUserRepository.save(appUserMapper.toAppUser(appUserPostRequestBody));
-//    }
 
     public void delete(Long appUserId) {
         boolean userExists = appUserRepository.existsById(appUserId);
@@ -75,7 +67,7 @@ public class AppUserService implements UserDetailsService {
         if (userExists) {
             // TODO check of attributes are the same and
             // TODO if email not confirmed send confirmation email.
-            throw new IllegalStateException("email already taken");
+            throw new BadRequestException("email already taken");
         }
         String encodedPassword = passwordEncoder.encode(appUser.getPassword());
         appUser.setPassword(encodedPassword);
