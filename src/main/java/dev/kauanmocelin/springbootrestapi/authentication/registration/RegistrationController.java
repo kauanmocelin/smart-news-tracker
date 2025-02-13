@@ -6,17 +6,25 @@ import dev.kauanmocelin.springbootrestapi.authentication.registration.request.Re
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @RestController
-@RequestMapping(path = "api/v1/auth")
+@RequestMapping(path = "/api/v1/auth")
 @AllArgsConstructor
 public class RegistrationController {
 
     private final RegistrationService registrationService;
 
     @PostMapping("/register")
-    public String register(@RequestBody RegistrationRequest request) {
-        return registrationService.register(request);
+    public ResponseEntity<String> register(@RequestBody RegistrationRequest request) {
+        final var registrationCode = registrationService.register(request);
+        final var uri =  ServletUriComponentsBuilder
+            .fromCurrentContextPath()
+            .replacePath("/api/v1/auth/verify")
+            .queryParam("token", registrationCode)
+            .build()
+            .toUri();
+        return ResponseEntity.created(uri).body(registrationCode);
     }
 
     @GetMapping(path = "/verify")
