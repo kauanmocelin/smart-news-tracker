@@ -10,6 +10,7 @@ import io.restassured.http.ContentType;
 import org.flywaydb.core.Flyway;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -32,6 +33,7 @@ import static org.hamcrest.Matchers.notNullValue;
     properties = "spring.flyway.clean-disabled=false"
 )
 @ActiveProfiles("test")
+@DisplayName("Tests for register keyword for monitoring flow end-to-end")
 class UserKeywordMonitoringE2ETest {
 
     @Container

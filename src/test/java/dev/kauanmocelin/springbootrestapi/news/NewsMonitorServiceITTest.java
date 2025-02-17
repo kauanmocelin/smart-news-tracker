@@ -2,6 +2,7 @@ package dev.kauanmocelin.springbootrestapi.news;
 
 import dev.kauanmocelin.springbootrestapi.appuser.AuthenticatedUserService;
 import dev.kauanmocelin.springbootrestapi.news.request.KeywordRequest;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -21,6 +22,7 @@ import static org.mockito.Mockito.verify;
 @SpringBootTest
 @Testcontainers
 @ActiveProfiles("test")
+@DisplayName("Tests for News Monitor service")
 class NewsMonitorServiceITTest {
 
     @Autowired

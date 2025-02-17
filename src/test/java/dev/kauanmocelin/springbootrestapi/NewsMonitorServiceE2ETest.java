@@ -4,6 +4,7 @@ import dev.kauanmocelin.springbootrestapi.authentication.registration.request.Lo
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
@@ -23,6 +24,7 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
 @SpringBootTest(webEnvironment = RANDOM_PORT)
 @Testcontainers
 @ActiveProfiles("test")
+@DisplayName("Tests for fetch news by keyword flow end-to-end")
 class NewsMonitorServiceE2ETest {
 
     @LocalServerPort
