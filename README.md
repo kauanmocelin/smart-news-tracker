@@ -19,6 +19,7 @@ SmartNews Tracker is an API that allows users to monitor news based on specific 
 - Maven
 - Lombok/MapStruct
 - Testcontainers
+- Wiremock
 - Docker
 - SpringDoc - Open API 3
 
