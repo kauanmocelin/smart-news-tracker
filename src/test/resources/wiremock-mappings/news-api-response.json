@@ -3,7 +3,21 @@
     {
       "request": {
         "method": "GET",
-        "urlPathPattern": "/everything"
+        "urlPathPattern": "/everything",
+        "queryParameters": {
+          "q": {
+            "equalTo": "java"
+          },
+          "language": {
+            "equalTo": "en"
+          },
+          "sortBy": {
+            "equalTo": "popularity"
+          },
+          "pageSize": {
+            "equalTo": "10"
+          }
+        }
       },
       "response": {
         "status": 200,
@@ -15,10 +29,6 @@
           "totalResults": 3,
           "articles": [
             {
-              "source": {
-                "id": null,
-                "name": "Creston.blog"
-              },
               "author": "Creston Bunch",
               "title": "WASM Will Replace Containers",
               "description": "WebAssembly is a true write-once-run-anywhere experience.",
@@ -28,10 +38,6 @@
               "content": "In the year 2030, no one will remember Kubernetes.\r\nPortability\r\nContainers solved a lot of important problems in software development. We had VMs before containers, but they were not as ergonomic to… [+4018 chars]"
             },
             {
-              "source": {
-                "id": null,
-                "name": "Techtalksweekly.io"
-              },
               "author": "Tech Talks Weekly",
               "title": "100 Most-Watched Software Engineering Talks of 2024",
               "description": "A complete list of the top 100 most watched talks of 2024 ordered by the number of views.",
@@ -41,10 +47,6 @@
               "content": "Following tradition, I put together a complete list of the top 100 most watched Software Engineering talks presented in 2024 across almost every Software Engineering conference around the world.Pleas… [+12062 chars]"
             },
             {
-              "source": {
-                "id": null,
-                "name": "Javacodegeeks.com"
-              },
               "author": "Yatin Batra",
               "title": "Java Exception With Null Message Handling",
               "description": "When developing Java applications, handling exceptions is crucial for debugging and ensuring robust code. Usually, when an exception is thrown in Java, it contains a message describing the issue, which helps developers diagnose and fix problems. However, ther…",

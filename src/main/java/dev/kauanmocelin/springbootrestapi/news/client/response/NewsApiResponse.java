@@ -8,7 +8,7 @@ public record NewsApiResponse(
     String status,
     int totalResults,
     @JsonProperty("articles")
-    List<NewsArticle> newsArticleRespons
+    List<NewsArticle> newsArticleResponse
 ) {
 }
 
