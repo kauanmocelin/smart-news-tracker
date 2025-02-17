@@ -15,13 +15,12 @@ public class NewsMonitorService {
     private final NewsApiClient newsApiClient;
     private final AuthenticatedUserService authenticatedUserService;
 
-    public String register(KeywordRequest keyword) {
+    public void register(KeywordRequest keyword) {
         newsMonitorRepository.save(NewsMonitor.builder()
                 .keyword(keyword.keyword())
                 .monitoringPeriod(keyword.monitoringPeriod())
                 .appUser(authenticatedUserService.getLoggedInUser())
             .build());
-        return null;
     }
 
     public NewsApiResponse fetchNews(final String keyword) {
