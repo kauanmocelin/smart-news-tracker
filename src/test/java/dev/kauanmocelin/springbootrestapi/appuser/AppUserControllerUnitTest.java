@@ -22,7 +22,7 @@ import static org.mockito.Mockito.when;
 
 @ExtendWith(SpringExtension.class)
 @DisplayName("Tests for AppUser controller")
-class AppUserControllerTest {
+class AppUserControllerUnitTest {
 
     @InjectMocks
     private AppUserController appUserController;

@@ -28,7 +28,7 @@ class NewsMonitorServiceTest {
     private Integer port;
 
     @Container
-    static WireMockContainer wiremockServer = new WireMockContainer("wiremock/wiremock:2.35.0")
+    static WireMockContainer wiremockServer = new WireMockContainer("wiremock/wiremock:2.35.1-1")
         .withMapping("hello", NewsMonitorServiceTest.class, "mocks-config.json");
 
 

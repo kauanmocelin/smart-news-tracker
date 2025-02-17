@@ -12,4 +12,22 @@ public class RegistrationPostRequestBodyCreator {
             .password("123456")
             .build();
     }
+
+    public static RegistrationRequest createPostRequestBodyWithoutNameCreator() {
+        return RegistrationRequest.builder()
+            .firstName("")
+            .lastName("da Silva")
+            .email("fulano@gmail.com")
+            .password("123456")
+            .build();
+    }
+
+    public static RegistrationRequest createPostRequestBodyWithInvalidNameCreator() {
+        return RegistrationRequest.builder()
+            .firstName("fu")
+            .lastName("da Silva")
+            .email("fulano@gmail.com")
+            .password("123456")
+            .build();
+    }
 }
