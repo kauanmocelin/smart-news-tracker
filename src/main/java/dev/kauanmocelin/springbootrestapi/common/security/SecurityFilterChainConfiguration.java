@@ -29,14 +29,13 @@ public class SecurityFilterChainConfiguration {
             .csrf(AbstractHttpConfigurer::disable)
             .authorizeHttpRequests(registry -> registry
                 .requestMatchers("/api/v1/auth/**").permitAll()
-                .requestMatchers(HttpMethod.GET, "/api/v1/customers/**").hasAuthority("USER")
+                .requestMatchers(HttpMethod.GET, "/api/v1/customers/**").hasAnyAuthority("USER", "ADMIN")
                 .requestMatchers(HttpMethod.POST, "/api/v1/customers/**").hasAuthority("ADMIN")
                 .requestMatchers(HttpMethod.PUT, "/api/v1/customers/**").hasAuthority("ADMIN")
                 .requestMatchers(HttpMethod.DELETE, "/api/v1/customers/**").hasAuthority("ADMIN")
-//                .requestMatchers("/api/v1/news-monitor/**").hasAuthority("USER")
+                .requestMatchers("/api/v1/news-monitor/**").hasAnyAuthority("USER", "ADMIN")
                 .requestMatchers("/v3/api-docs/**").permitAll()
                 .requestMatchers("/swagger-ui/**").permitAll()
-                .requestMatchers("/api/v1/news-monitor/news/**").permitAll()
                 .anyRequest().authenticated()
             )
             .sessionManagement(sessionManagement -> sessionManagement
