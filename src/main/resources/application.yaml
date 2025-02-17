@@ -45,3 +45,7 @@ news:
   api:
     url: "https://newsapi.org/v2"
     api-key: ${NEWS_API_KEY}
+
+springdoc:
+  swagger-ui:
+    tagsSorter: alpha
