@@ -30,7 +30,7 @@ import static org.hamcrest.Matchers.notNullValue;
     properties = "spring.flyway.clean-disabled=false"
 )
 @ActiveProfiles("test")
-class SpringBootRestApiApplicationTests {
+class UserKeywordMonitoringE2ETest {
 
     @Container
     @ServiceConnection
@@ -60,31 +60,6 @@ class SpringBootRestApiApplicationTests {
             .get("/api/v1/customers")
             .then()
             .statusCode(HttpStatus.FORBIDDEN.value());
-    }
-
-    @Test
-    void shouldRegisterNewUserWhenValidInputAndValidationTokenAreProvided() {
-        RegistrationRequest registrationRequest = RegistrationRequest.builder()
-            .firstName("Fulano")
-            .lastName("Da Silva")
-            .email("fulano@gmail.com")
-            .password("123456")
-            .build();
-        final var validationToken = given()
-            .contentType(ContentType.JSON)
-            .body(registrationRequest)
-            .when()
-            .post("/api/v1/auth/register")
-            .then()
-            .statusCode(HttpStatus.CREATED.value())
-            .body(notNullValue())
-            .extract().body().asString();
-        given()
-            .when()
-            .get("/api/v1/auth/verify?token={validationToken}", validationToken)
-            .then()
-            .statusCode(HttpStatus.OK.value())
-            .body(notNullValue());
     }
 
     @Test
