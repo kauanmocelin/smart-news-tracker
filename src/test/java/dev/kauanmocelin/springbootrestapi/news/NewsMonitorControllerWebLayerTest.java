@@ -24,7 +24,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
     @ComponentScan.Filter(
         type = FilterType.ASSIGNABLE_TYPE,
         classes = JwtAuthenticationFilter.class))
-class NewsMonitorControllerTest {
+class NewsMonitorControllerWebLayerTest {
 
     @Autowired
     private MockMvc mockMvc;

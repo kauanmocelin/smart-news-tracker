@@ -21,7 +21,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 @Testcontainers
 @DataJpaTest
 @DisplayName("Tests for AppUser repository")
-class AppUserRepositoryTest {
+class AppUserRepositoryITTest {
 
     @Container
     @ServiceConnection

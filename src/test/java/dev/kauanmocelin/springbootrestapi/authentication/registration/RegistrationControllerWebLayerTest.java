@@ -30,7 +30,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
         type = FilterType.ASSIGNABLE_TYPE,
         classes = JwtAuthenticationFilter.class))
 @DisplayName("Tests for Registration controller")
-class RegistrationControllerTest {
+class RegistrationControllerWebLayerTest {
 
     @Autowired
     private MockMvc mockMvc;
