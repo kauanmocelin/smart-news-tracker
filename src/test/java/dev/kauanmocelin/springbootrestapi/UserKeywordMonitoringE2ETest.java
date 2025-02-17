@@ -2,6 +2,7 @@ package dev.kauanmocelin.springbootrestapi;
 
 import dev.kauanmocelin.springbootrestapi.authentication.registration.request.LoginRequest;
 import dev.kauanmocelin.springbootrestapi.authentication.registration.request.RegistrationRequest;
+import dev.kauanmocelin.springbootrestapi.email.EmailService;
 import dev.kauanmocelin.springbootrestapi.news.MonitoringPeriod;
 import dev.kauanmocelin.springbootrestapi.news.request.KeywordRequest;
 import io.restassured.RestAssured;
@@ -16,6 +17,7 @@ import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
 import org.springframework.http.HttpStatus;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
@@ -51,6 +53,9 @@ class UserKeywordMonitoringE2ETest {
         flyway.clean();
         flyway.migrate();
     }
+
+    @MockitoBean
+    private EmailService emailService;
 
     @Test
     void shouldReturnUnauthorizedWhenMissingAuthorizationCredentials() {
