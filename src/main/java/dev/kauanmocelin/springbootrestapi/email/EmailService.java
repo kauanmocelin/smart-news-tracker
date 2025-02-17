@@ -18,7 +18,7 @@ public class EmailService implements EmailSender {
 
     @Override
     @Async
-    public void send(String to, String email) {
+    public void send(String to, String email) throws MessagingException {
         try {
             MimeMessage mimeMessage = mailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, "utf-8");
@@ -27,9 +27,10 @@ public class EmailService implements EmailSender {
             helper.setSubject("Confirm your email");
             helper.setFrom("hello@amigos.com");
             mailSender.send(mimeMessage);
+            log.info("email sent successfully to {} with subject {}", to, "Confirm your email");
         } catch (MessagingException ex) {
-            log.error("fail to sendo email", ex);
-            throw new IllegalStateException("fail to sendo email");
+            log.error("fail to send email to {} with subject {}", to, "Confirm your email", ex);
+            throw ex;
         }
     }
 }
