@@ -1,5 +1,6 @@
-package dev.kauanmocelin.springbootrestapi.news;
+package dev.kauanmocelin.springbootrestapi;
 
+import dev.kauanmocelin.springbootrestapi.authentication.registration.request.LoginRequest;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import org.junit.jupiter.api.BeforeEach;
@@ -22,15 +23,14 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
 @SpringBootTest(webEnvironment = RANDOM_PORT)
 @Testcontainers
 @ActiveProfiles("test")
-class NewsMonitorServiceTest {
+class NewsMonitorServiceE2ETest {
 
     @LocalServerPort
     private Integer port;
 
     @Container
     static WireMockContainer wiremockServer = new WireMockContainer("wiremock/wiremock:2.35.1-1")
-        .withMapping("hello", NewsMonitorServiceTest.class, "mocks-config.json");
-
+        .withMappingFromResource("wiremock-mappings/news-api-response.json");
 
     @DynamicPropertySource
     static void configureProperties(DynamicPropertyRegistry registry) {
@@ -43,11 +43,24 @@ class NewsMonitorServiceTest {
     }
 
     @Test
-    void test() {
+    void shouldFetchThreeNewsArticlesWhenJavaKeywordIsProvidedAndUserIsLoggedIn() {
+        final var loginRequest = LoginRequest.builder()
+            .username("admin@gmail.com")
+            .password("123456")
+            .build();
+        final var accessToken = given()
+            .contentType(ContentType.JSON)
+            .body(loginRequest)
+            .when()
+            .post("/api/v1/auth/login")
+            .then()
+            .statusCode(HttpStatus.OK.value())
+            .extract()
+            .jsonPath().getString("access_token");
         final var keyword = "java";
         given().contentType(ContentType.JSON)
+            .header("Authorization", "Bearer " + accessToken)
             .when()
-            .log().all()
             .get("/api/v1/news-monitor/news/{keyword}", keyword)
             .then()
             .statusCode(HttpStatus.OK.value())
