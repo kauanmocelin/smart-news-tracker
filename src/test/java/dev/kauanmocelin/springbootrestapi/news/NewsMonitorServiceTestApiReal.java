@@ -15,9 +15,9 @@ class NewsMonitorServiceTestApiReal {
     private NewsMonitorService newsMonitorService;
 
     @Test
-    void shouldFetchNewsSuccessfully() {
+    void shouldFetchNewsFromYesterdaySuccessfully() {
         String keyword = "Java";
-        var response = newsMonitorService.fetchNews(keyword);
+        var response = newsMonitorService.fetchNewsFromYesterday(keyword);
 
         assertThat(response).isNotNull();
         System.out.println(response);

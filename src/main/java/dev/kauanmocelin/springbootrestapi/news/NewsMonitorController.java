@@ -28,12 +28,12 @@ public class NewsMonitorController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    @Operation(summary = "Fetch news from keyword", description = "Fetch news from keyword", tags = {"news-monitor"})
+    @Operation(summary = "Fetch news from keyword", description = "Fetch ten news more popularity with a keyword", tags = {"news-monitor"})
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "Successful fetched news from keyword"),
     })
     @GetMapping("/news/{keyword}")
     public ResponseEntity<NewsApiResponse> fetchNews(@PathVariable String keyword) {
-        return ResponseEntity.ok(newsMonitorService.fetchNews(keyword));
+        return ResponseEntity.ok(newsMonitorService.fetchNewsFromYesterday(keyword));
     }
 }

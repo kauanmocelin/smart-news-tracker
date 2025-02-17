@@ -17,13 +17,13 @@ public class NewsMonitorService {
 
     public void register(KeywordRequest keyword) {
         newsMonitorRepository.save(NewsMonitor.builder()
-                .keyword(keyword.keyword())
-                .monitoringPeriod(keyword.monitoringPeriod())
-                .appUser(authenticatedUserService.getLoggedInUser())
+            .keyword(keyword.keyword())
+            .monitoringPeriod(keyword.monitoringPeriod())
+            .appUser(authenticatedUserService.getLoggedInUser())
             .build());
     }
 
-    public NewsApiResponse fetchNews(final String keyword) {
-        return newsApiClient.getNews(keyword);
+    public NewsApiResponse fetchNewsFromYesterday(final String keyword) {
+        return newsApiClient.getNewsFromYesterday(keyword);
     }
 }

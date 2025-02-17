@@ -6,6 +6,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.time.LocalDate;
+
 @Component
 @RequiredArgsConstructor
 public class NewsApiClient {
@@ -13,12 +15,14 @@ public class NewsApiClient {
     private final RestTemplate restTemplate;
     private final NewsApiProperties properties;
 
-    public NewsApiResponse getNews(final String keyword) {
+    public NewsApiResponse getNewsFromYesterday(final String keyword) {
         final var apiUrl = UriComponentsBuilder
             .fromUriString(properties.getUrl())
             .path("/everything")
             .queryParam("q", keyword)
-            .queryParam("from", "2025-02-12")
+            .queryParam("from", LocalDate.now().minusDays(1) .toString())
+            .queryParam("sortBy", "popularity")
+            .queryParam("pageSize", "10")
             .queryParam("language", "en")
             .queryParam("apiKey", properties.getApiKey())
             .toUriString();
