@@ -17,7 +17,6 @@ public class NewsMonitorResumeEmailSender {
     private final NewsMonitorRepository newsMonitorRepository;
     private final NewsMonitorService newsMonitorService;
     private final EmailSender emailSender;
-
     private final TemplateEngine templateEngine;
 
     public void sendNewsResumeEmailByPeriod(final MonitoringPeriod monitoringPeriod) {

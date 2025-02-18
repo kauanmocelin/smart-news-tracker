@@ -14,28 +14,27 @@ public class NewsMonitorScheduler {
     private final NewsMonitorResumeEmailSender newsMonitorResumeEmailSender;
 
     @Scheduled(fixedRate = 30000) // Executa a cada 30 segundos
-    @Scheduled(cron = "@daily")
+//    @Scheduled(cron = "@daily")
     public void sendMonitoredNewsDaily() {
         final var dailyPeriod = MonitoringPeriod.DAILY;
         try {
+            log.info("{} summary news routine executed successfully", dailyPeriod.name());
             newsMonitorResumeEmailSender.sendNewsResumeEmailByPeriod(dailyPeriod);
-            log.info("Scheduled {} task completed successfully", dailyPeriod.name());
         } catch(Exception e) {
-            log.error("Error executing {} scheduled task:{}", dailyPeriod.name(), e.getMessage());
+            log.error("error executing {} summary news routine:{}", dailyPeriod.name(), e.getMessage());
             throw e;
         }
     }
 
-    //    @Scheduled(cron = "0 0 8 * * MON") // Uma vez por semana (na segunda-feira às 08:00)
-    @Scheduled(fixedRate = 60000) // Executa a cada 60 segundos
+//    @Scheduled(fixedRate = 60000, initialDelay = 60000) // Executa a cada 60 segundos
     @Scheduled(cron = "@weekly")
     public void sendMonitoredNewsWeekly() {
         final var weeklyPeriod = MonitoringPeriod.WEEKLY;
         try {
+            log.info("{} summary news routine executed successfully", weeklyPeriod.name());
             newsMonitorResumeEmailSender.sendNewsResumeEmailByPeriod(weeklyPeriod);
-            log.info("Scheduled {} task completed successfully", weeklyPeriod.name());
         } catch(Exception e) {
-            log.error("Error executing {} scheduled task:{}", weeklyPeriod.name(), e.getMessage());
+            log.error("error executing {} summary news routine:{}", weeklyPeriod.name(), e.getMessage());
             throw e;
         }
     }
@@ -44,10 +43,10 @@ public class NewsMonitorScheduler {
     public void sendMonitoredNewsMonthly() {
         final var monthlyPeriod = MonitoringPeriod.MONTHLY;
         try {
+            log.info("{} summary news routine executed successfully", monthlyPeriod.name());
             newsMonitorResumeEmailSender.sendNewsResumeEmailByPeriod(monthlyPeriod);
-            log.info("Scheduled {} task completed successfully", monthlyPeriod.name());
         } catch(Exception e) {
-            log.error("Error executing {} scheduled task:{}", monthlyPeriod.name(), e.getMessage());
+            log.error("error executing {} summary news routine:{}", monthlyPeriod.name(), e.getMessage());
             throw e;
         }
     }

@@ -13,6 +13,9 @@ spring:
     show-sql: false
     properties:
       hibernate.format_sql: true
+  output:
+    ansi:
+      enabled: always
   mail:
     host: ${MAIL_HOST}
     port: ${MAIL_PORT}
@@ -49,3 +52,8 @@ news:
 springdoc:
   swagger-ui:
     tagsSorter: alpha
+
+logging:
+  level:
+    root: info
+    dev.kauanmocelin.springbootrestapi.*: debug

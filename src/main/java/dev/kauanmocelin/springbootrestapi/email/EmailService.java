@@ -31,9 +31,9 @@ public class EmailService implements EmailSender {
             helper.setSubject(subject);
             helper.setFrom(fromSender);
             mailSender.send(mimeMessage);
-            log.info("email sent successfully to {} with subject {}", toRecipient, "Confirm your email");
+            log.info("email sent successfully to {} with subject {}", toRecipient, subject);
         } catch (MessagingException ex) {
-            log.error("fail to send email to {} with subject {}", toRecipient, "Confirm your email", ex);
+            log.error("fail to send email to {} with subject {}", toRecipient, subject, ex);
             throw new IllegalStateException("fail to send email", ex);
         }
     }
