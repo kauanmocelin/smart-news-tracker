@@ -54,6 +54,15 @@ springdoc:
     tagsSorter: alpha
 
 logging:
+  file:
+    name: "${LOG_DIR:/tmp}/spring-boot-application.log"
   level:
     root: info
     dev.kauanmocelin.springbootrestapi.*: debug
+  logback:
+    rollingpolicy:
+      file-name-pattern: ${logging.file.name}.%d{yyyy-MM-dd}.%i.gz
+      max-file-size: 2MB
+      total-size-cap: 50MB
+      clean-history-on-start: true
+      max-history: 7
