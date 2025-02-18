@@ -1,6 +1,6 @@
 spring:
   application:
-    name: rest-api-springboot
+    name: smart-news-tracker
   config:
     import: optional:file:.env[.properties]
   datasource:
@@ -41,6 +41,7 @@ application:
       expiration: 3600000 # 1 hour
       refresh-token:
         expiration: 604800000 #7 days
+  base-url: http://localhost:${server.port}
 news:
   api:
     url: "https://newsapi.org/v2"

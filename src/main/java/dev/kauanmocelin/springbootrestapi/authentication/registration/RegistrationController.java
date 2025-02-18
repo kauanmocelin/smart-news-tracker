@@ -43,7 +43,8 @@ public class RegistrationController {
     })
     @GetMapping(path = "/verify")
     public String confirm(@RequestParam("token") String token) {
-        return registrationService.confirmToken(token);
+        registrationService.confirmToken(token);
+        return "Your account has confirmed successfully";
     }
 
     @Operation(summary = "User login", description = "User login", tags = {"authentication"})
