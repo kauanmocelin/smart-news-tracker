@@ -4,20 +4,20 @@ spring:
   config:
     import: optional:file:.env[.properties]
   datasource:
-    url: jdbc:postgresql://localhost:5432/customer
-    username: ${DB_USER}
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
     password: ${DB_PASSWORD}
   jpa:
     hibernate:
       ddl-auto: validate
-    show-sql: true
+    show-sql: false
     properties:
       hibernate.format_sql: true
   mail:
-    host: localhost
-    port: 1025
-    username: ${DEVMAIL_USERNAME}
-    password: ${DEVMAIL_PASSWORD}
+    host: ${MAIL_HOST}
+    port: ${MAIL_PORT}
+    username: ${MAIL_USERNAME}
+    password: ${MAIL_PASSWORD}
     properties:
       mail:
         smtp:
@@ -30,23 +30,22 @@ spring:
           timeout: 3000
           writetimeout: 5000
 server:
-  port: 8080
+  port: ${SERVER_PORT}
   error:
     include-message: always
     include-binding-errors: always
 application:
   security:
     jwt:
-      secret-key: 6e3f9b5a4d8e7f2a1c9b0d6e7f3a2b9c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8
+      secret-key: ${JWT_SECRET_KEY}
       expiration: 3600000 # 1 hour
       refresh-token:
         expiration: 604800000 #7 days
-  base-url: http://localhost:${server.port}
+  base-url: ${SERVER_BASE_URL}:${server.port}
 news:
   api:
     url: "https://newsapi.org/v2"
     api-key: ${NEWS_API_KEY}
-
 springdoc:
   swagger-ui:
     tagsSorter: alpha
