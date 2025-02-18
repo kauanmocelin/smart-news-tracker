@@ -1,7 +1,5 @@
 package dev.kauanmocelin.springbootrestapi.email;
 
-import jakarta.mail.MessagingException;
-
 public interface EmailSender {
-    void send(final String to, final String email) throws MessagingException;
+    void send(final String toRecipient, final String emailContent, final String subject);
 }

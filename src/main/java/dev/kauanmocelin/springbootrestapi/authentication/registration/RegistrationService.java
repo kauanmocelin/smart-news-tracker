@@ -13,8 +13,8 @@ import dev.kauanmocelin.springbootrestapi.authentication.registration.request.Re
 import dev.kauanmocelin.springbootrestapi.authentication.token.Token;
 import dev.kauanmocelin.springbootrestapi.authentication.token.TokenRepository;
 import dev.kauanmocelin.springbootrestapi.authentication.token.TokenType;
-import dev.kauanmocelin.springbootrestapi.email.EmailSender;
 import dev.kauanmocelin.springbootrestapi.common.security.JwtService;
+import dev.kauanmocelin.springbootrestapi.email.EmailSender;
 import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -57,7 +57,8 @@ public class RegistrationService {
         String link = "http://localhost:8083/api/v1/registration/confirm?token=" + token;
         emailSender.send(
             request.getEmail(),
-            buildEmail(request.getFirstName(), link));
+            buildEmail(request.getFirstName(), link),
+            "Confirm your email");
         return token;
     }
 
