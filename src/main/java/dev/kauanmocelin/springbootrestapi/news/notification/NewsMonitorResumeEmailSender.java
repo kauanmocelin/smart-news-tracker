@@ -1,6 +1,6 @@
 package dev.kauanmocelin.springbootrestapi.news.notification;
 
-import dev.kauanmocelin.springbootrestapi.email.EmailService;
+import dev.kauanmocelin.springbootrestapi.email.EmailSender;
 import dev.kauanmocelin.springbootrestapi.news.MonitoringPeriod;
 import dev.kauanmocelin.springbootrestapi.news.NewsMonitorRepository;
 import dev.kauanmocelin.springbootrestapi.news.NewsMonitorService;
@@ -16,7 +16,7 @@ public class NewsMonitorResumeEmailSender {
 
     private final NewsMonitorRepository newsMonitorRepository;
     private final NewsMonitorService newsMonitorService;
-    private final EmailService emailService;
+    private final EmailSender emailSender;
 
     private final TemplateEngine templateEngine;
 
@@ -24,7 +24,7 @@ public class NewsMonitorResumeEmailSender {
         newsMonitorRepository.findAll().forEach(newsMonitor -> {
             final NewsApiResponse newsApiResponse = newsMonitorService.fetchNewsFromYesterday(newsMonitor.getKeyword());
             if (newsMonitor.getMonitoringPeriod() == monitoringPeriod) {
-                emailService.send(newsMonitor.getAppUser().getEmail(), buildNewsEmail(newsApiResponse), "Your news summary - SmartNews Tracker");
+                emailSender.send(newsMonitor.getAppUser().getEmail(), buildNewsEmail(newsApiResponse), "Your news summary - SmartNews Tracker");
             }
         });
     }

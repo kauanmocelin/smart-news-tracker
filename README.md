@@ -35,10 +35,10 @@ SmartNews Tracker is an API that allows users to monitor news based on specific 
 
 ```bash
 # clone repository
-git clone https://github.com/kauanmocelin/rest-api-springboot.git
+git clone https://github.com/kauanmocelin/smart-news-tracker.git
 
 # enter the project folder
-cd rest-api-springboot
+cd smart-news-tracker
 
 # run docker container
 docker-compose up
@@ -47,7 +47,7 @@ docker-compose up
 ./mvnw spring-boot:run
 
 # access the api documentation
-http://127.0.0.1:8080/swagger-ui.html 
+http://localhost:8080/swagger-ui.html 
 ```
 
 # Author
