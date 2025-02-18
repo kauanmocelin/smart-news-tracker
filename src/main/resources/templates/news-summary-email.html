@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Your Daily News Update</title>
+</head>
+<body style="font-family:Helvetica,Arial,sans-serif;font-size:16px;margin:0;color:#0b0c0c;">
+
+<table role="presentation" width="100%" style="border-collapse:collapse;min-width:100%;width:100%!important" cellpadding="0" cellspacing="0" border="0">
+    <tbody>
+    <tr>
+        <td width="100%" height="53" bgcolor="#0b0c0c">
+            <table role="presentation" width="100%" style="border-collapse:collapse;max-width:580px" cellpadding="0" cellspacing="0" border="0" align="center">
+                <tbody>
+                <tr>
+                    <td width="70" bgcolor="#0b0c0c" valign="middle"></td>
+                    <td style="font-size:28px;line-height:1.315789474;padding-left:10px">
+                        <span style="font-weight:700;color:#ffffff;text-decoration:none;">Your Daily News Update</span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<table role="presentation" align="center" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;max-width:580px;width:100%!important">
+    <tbody>
+    <tr>
+        <td height="30"><br></td>
+    </tr>
+    <tr>
+        <td style="font-size:19px;line-height:1.315789474;max-width:560px">
+            <p>Here are the latest news articles related to your interests:</p>
+
+            <div th:each="article : ${articles}" style="margin-bottom: 20px;">
+                <h2 style="color:#1D70B8;" th:text="${article.title}"></h2>
+                <p><strong>Published on:</strong> <span th:text="${article.publishedAt != null ? article.publishedAt : 'Unknown date'}"></span></p>
+                <p><strong>Author:</strong> <span th:text="${article.author != null ? article.author : 'Unknown'}"></span></p>
+                <p th:text="${article.description != null ? article.description : 'No description available.'}"></p>
+                <p><a th:href="${article.url}" style="color:#1D70B8;text-decoration:none;">Read more</a></p>
+                <hr>
+            </div>
+            <p>Stay informed and have a great day!</p>
+        </td>
+    </tr>
+    <tr>
+        <td height="30"><br></td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
