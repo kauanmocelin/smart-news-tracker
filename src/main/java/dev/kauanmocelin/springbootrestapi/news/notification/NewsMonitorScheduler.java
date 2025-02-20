@@ -13,8 +13,7 @@ public class NewsMonitorScheduler {
 
     private final NewsMonitorResumeEmailSender newsMonitorResumeEmailSender;
 
-    @Scheduled(fixedRate = 30000) // Executa a cada 30 segundos
-//    @Scheduled(cron = "@daily")
+    @Scheduled(cron = "@daily")
     public void sendMonitoredNewsDaily() {
         final var dailyPeriod = MonitoringPeriod.DAILY;
         try {
@@ -26,7 +25,6 @@ public class NewsMonitorScheduler {
         }
     }
 
-//    @Scheduled(fixedRate = 60000, initialDelay = 60000) // Executa a cada 60 segundos
     @Scheduled(cron = "@weekly")
     public void sendMonitoredNewsWeekly() {
         final var weeklyPeriod = MonitoringPeriod.WEEKLY;
