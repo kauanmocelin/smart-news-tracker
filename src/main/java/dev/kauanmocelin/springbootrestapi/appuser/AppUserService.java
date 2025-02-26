@@ -2,10 +2,12 @@ package dev.kauanmocelin.springbootrestapi.appuser;
 
 import dev.kauanmocelin.springbootrestapi.appuser.mapper.AppUserMapper;
 import dev.kauanmocelin.springbootrestapi.appuser.request.AppUserPutRequestBody;
+import dev.kauanmocelin.springbootrestapi.appuser.response.AppUserResponseBody;
 import dev.kauanmocelin.springbootrestapi.authentication.registration.code.RegistrationCode;
 import dev.kauanmocelin.springbootrestapi.authentication.registration.code.RegistrationCodeService;
 import dev.kauanmocelin.springbootrestapi.common.exception.BadRequestException;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.BeanUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -26,21 +28,15 @@ public class AppUserService implements UserDetailsService {
     private final PasswordEncoder passwordEncoder;
     private final AppUserMapper appUserMapper;
 
-    public List<AppUser> findAll() {
-        return appUserRepository.findAll();
+    public List<AppUserResponseBody> findAll() {
+        return appUserRepository.findAll().stream()
+            .map(appUserMapper::toAppUserResponseBody)
+            .toList();
     }
 
-    public AppUser findByIdOrThrowBadRequestException(Long appUserId) {
-        return appUserRepository.findById(appUserId)
-            .orElseThrow(() -> new BadRequestException("user with id " + appUserId + " does not exists"));
-    }
-
-    public void delete(Long appUserId) {
-        boolean userExists = appUserRepository.existsById(appUserId);
-        if (!userExists) {
-            throw new BadRequestException("user with id " + appUserId + " does not exists");
-        }
-        appUserRepository.deleteById(appUserId);
+    public AppUserResponseBody findById(final Long appUserId) {
+        AppUser appUser = findByIdOrThrowBadRequestException(appUserId);
+        return appUserMapper.toAppUserResponseBody(appUser);
     }
 
     public void replace(AppUserPutRequestBody appUserPutRequestBody) {
@@ -50,9 +46,21 @@ public class AppUserService implements UserDetailsService {
         if (appUserOptional.isPresent() && !appUserOptional.get().getId().equals(savedCustomer.getId())) {
             throw new BadRequestException("email taken");
         }
-        AppUser appUser = appUserMapper.toAppUser(appUserPutRequestBody);
-        appUser.setId(savedCustomer.getId());
-        appUserRepository.save(appUser);
+        BeanUtils.copyProperties(appUserPutRequestBody, savedCustomer, "id");
+        appUserRepository.save(savedCustomer);
+    }
+
+    private AppUser findByIdOrThrowBadRequestException(final Long appUserId) {
+        return appUserRepository.findById(appUserId)
+            .orElseThrow(() -> new BadRequestException("user with id " + appUserId + " does not exists"));
+    }
+
+    public void delete(Long appUserId) {
+        final var userExists = appUserRepository.existsById(appUserId);
+        if (!userExists) {
+            throw new BadRequestException("user with id " + appUserId + " does not exists");
+        }
+        appUserRepository.deleteById(appUserId);
     }
 
     @Override

@@ -1,6 +1,7 @@
 package dev.kauanmocelin.springbootrestapi.util;
 
 import dev.kauanmocelin.springbootrestapi.appuser.AppUser;
+import dev.kauanmocelin.springbootrestapi.appuser.response.AppUserResponseBody;
 
 import java.time.LocalDate;
 
@@ -16,13 +17,12 @@ public class AppUserCreator {
             .build();
     }
 
-    public static AppUser createValidAppUser() {
-        return AppUser.builder()
+    public static AppUserResponseBody createValidAppUser() {
+        return AppUserResponseBody.builder()
             .id(1L)
             .firstName("Fulano")
             .lastName("da Silva")
             .email("fulano@gmail.com")
-            .password("123456")
             .dateOfBirth(LocalDate.of(2000, 1, 1))
             .build();
     }

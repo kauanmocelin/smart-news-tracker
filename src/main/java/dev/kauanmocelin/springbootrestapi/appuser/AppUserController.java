@@ -1,6 +1,7 @@
 package dev.kauanmocelin.springbootrestapi.appuser;
 
 import dev.kauanmocelin.springbootrestapi.appuser.request.AppUserPutRequestBody;
+import dev.kauanmocelin.springbootrestapi.appuser.response.AppUserResponseBody;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "api/v1/users")
+@RequestMapping(path = "/api/v1/users")
 @RequiredArgsConstructor
 public class AppUserController {
 
@@ -22,7 +23,7 @@ public class AppUserController {
     @GetMapping
     @Operation(summary = "List all users", description = "List all users", tags = {"user"})
     @ApiResponse(responseCode = "200", description = "Successful operation")
-    public ResponseEntity<List<AppUser>> listAll() {
+    public ResponseEntity<List<AppUserResponseBody>> listAll() {
         return ResponseEntity.ok(appUserService.findAll());
     }
 
@@ -32,8 +33,8 @@ public class AppUserController {
         @ApiResponse(responseCode = "200", description = "Successful operation"),
         @ApiResponse(responseCode = "400", description = "User does not exist in the database with id")
     })
-    public ResponseEntity<AppUser> findById(@PathVariable("user-id") Long appUserId) {
-        return ResponseEntity.ok(appUserService.findByIdOrThrowBadRequestException(appUserId));
+    public ResponseEntity<AppUserResponseBody> findById(@PathVariable("user-id") Long appUserId) {
+        return ResponseEntity.ok(appUserService.findById(appUserId));
     }
 
     @DeleteMapping(path = "/{user-id}")
@@ -42,7 +43,7 @@ public class AppUserController {
         @ApiResponse(responseCode = "204", description = "Successful operation"),
         @ApiResponse(responseCode = "400", description = "When user does no exist in the database")
     })
-    public ResponseEntity<Void> deleteCustomer(@PathVariable("user-id") Long appUserId) {
+    public ResponseEntity<Void> deleteUser(@PathVariable("user-id") Long appUserId) {
         appUserService.delete(appUserId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
@@ -53,7 +54,7 @@ public class AppUserController {
         @ApiResponse(responseCode = "204", description = "Successful operation"),
         @ApiResponse(responseCode = "400", description = "When user does not exist in the database or email already has been used")
     })
-    public ResponseEntity<Void> updateCustomer(@RequestBody @Valid AppUserPutRequestBody appUserPutRequestBody) {
+    public ResponseEntity<Void> updateUser(@RequestBody @Valid AppUserPutRequestBody appUserPutRequestBody) {
         appUserService.replace(appUserPutRequestBody);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }

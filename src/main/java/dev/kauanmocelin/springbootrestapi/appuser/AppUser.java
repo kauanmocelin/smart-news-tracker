@@ -13,7 +13,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDate;
 import java.time.Period;
-import java.util.ArrayList;
 import java.util.Collection;
 
 @Data
@@ -56,9 +55,9 @@ public class AppUser implements UserDetails {
     private Boolean enabled;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    private Collection<Role> roles = new ArrayList<>();
+    private Collection<Role> roles;
 
-    @OneToMany(mappedBy = "appUser")
+    @OneToMany(mappedBy = "appUser", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     private Collection<Token> tokens;
 
     @Override

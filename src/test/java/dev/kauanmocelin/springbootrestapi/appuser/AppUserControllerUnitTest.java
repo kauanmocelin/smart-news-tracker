@@ -1,6 +1,7 @@
 package dev.kauanmocelin.springbootrestapi.appuser;
 
 import dev.kauanmocelin.springbootrestapi.appuser.request.AppUserPutRequestBody;
+import dev.kauanmocelin.springbootrestapi.appuser.response.AppUserResponseBody;
 import dev.kauanmocelin.springbootrestapi.util.AppUserCreator;
 import dev.kauanmocelin.springbootrestapi.util.CustomerPutRequestBodyCreator;
 import org.junit.jupiter.api.DisplayName;
@@ -35,7 +36,7 @@ class AppUserControllerUnitTest {
         when(appUserServiceMock.findAll()).thenReturn(List.of(AppUserCreator.createValidAppUser()));
         var expectedName = AppUserCreator.createValidAppUser().getFirstName();
 
-        List<AppUser> users = appUserController.listAll().getBody();
+        List<AppUserResponseBody> users = appUserController.listAll().getBody();
 
         assertThat(users)
             .isNotNull()
@@ -47,7 +48,7 @@ class AppUserControllerUnitTest {
     @Test
     @DisplayName("Should return customer when find by id")
     void shouldReturnCustomerWhenFindById() {
-        when(appUserServiceMock.findByIdOrThrowBadRequestException(ArgumentMatchers.anyLong()))
+        when(appUserServiceMock.findById(ArgumentMatchers.anyLong()))
             .thenReturn(AppUserCreator.createValidAppUser());
         Long expectedId = AppUserCreator.createValidAppUser().getId();
 
@@ -61,11 +62,11 @@ class AppUserControllerUnitTest {
 
     @Test
     @DisplayName("Should delete customer when successful")
-    void shouldDeleteCustomerWhenSuccessful() {
+    void shouldDeleteUserWhenSuccessful() {
         doNothing().when(appUserServiceMock).delete(ArgumentMatchers.anyLong());
-        ResponseEntity<Void> entity = appUserController.deleteCustomer(1L);
+        ResponseEntity<Void> entity = appUserController.deleteUser(1L);
 
-        assertThatCode(() -> appUserController.deleteCustomer(1L))
+        assertThatCode(() -> appUserController.deleteUser(1L))
             .doesNotThrowAnyException();
         assertThat(entity).isNotNull();
         assertThat(entity.getStatusCode()).isEqualTo(HttpStatus.NO_CONTENT);
@@ -73,11 +74,11 @@ class AppUserControllerUnitTest {
 
     @Test
     @DisplayName("Should update customer email when successful")
-    void shouldUpdateCustomerEmailWhenSuccessful() {
+    void shouldUpdateUserEmailWhenSuccessful() {
         doNothing().when(appUserServiceMock).replace(ArgumentMatchers.any(AppUserPutRequestBody.class));
-        ResponseEntity<Void> entity = appUserController.updateCustomer(CustomerPutRequestBodyCreator.createPutRequestBodyCreator());
+        ResponseEntity<Void> entity = appUserController.updateUser(CustomerPutRequestBodyCreator.createPutRequestBodyCreator());
 
-        assertThatCode(() -> appUserController.updateCustomer(CustomerPutRequestBodyCreator.createPutRequestBodyCreator()))
+        assertThatCode(() -> appUserController.updateUser(CustomerPutRequestBodyCreator.createPutRequestBodyCreator()))
             .doesNotThrowAnyException();
         assertThat(entity).isNotNull();
         assertThat(entity.getStatusCode()).isEqualTo(HttpStatus.NO_CONTENT);
