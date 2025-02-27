@@ -33,7 +33,6 @@ import java.util.Collections;
 public class RegistrationService {
 
     private final AppUserService appUserService;
-    private final EmailValidator emailValidator;
     private final RegistrationCodeService registrationCodeService;
     private final EmailSender emailSender;
     private final AuthenticationManager authenticationManager;
