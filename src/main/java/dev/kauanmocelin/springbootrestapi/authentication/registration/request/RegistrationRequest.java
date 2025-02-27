@@ -28,7 +28,7 @@ public class RegistrationRequest {
     private final String password;
 
     @NotBlank(message = "The user e-mail cannot be empty")
-    @Email(message = "The customer user should be valid")
+    @Email(message = "The user email should be valid")
     @Schema(description = "This is the User's e-mail", example = "fulano@gmail.com")
     private final String email;
 }

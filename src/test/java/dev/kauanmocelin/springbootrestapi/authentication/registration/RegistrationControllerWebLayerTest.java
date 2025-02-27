@@ -78,4 +78,16 @@ class RegistrationControllerWebLayerTest {
             .andExpect(jsonPath("$.fieldsErrorValidation[*].message")
             .value(hasItem("The user first name must be between 3 and 100 characters")));
     }
+
+    @Test
+    @DisplayName("Email should be valid")
+    void shouldReturnExceptionBadRequestWhenEmailIsInvalid() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/auth/register")
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(RegistrationPostRequestBodyCreator.createPostRequestBodyWithInvalidEmailCreator())))
+            .andExpect(status().isBadRequest())
+            .andExpect(jsonPath("$.fieldsErrorValidation[*].message")
+            .value(hasItem("The user email should be valid")));
+    }
 }

@@ -24,9 +24,18 @@ public class RegistrationPostRequestBodyCreator {
 
     public static RegistrationRequest createPostRequestBodyWithInvalidNameCreator() {
         return RegistrationRequest.builder()
-            .firstName("fu")
+            .firstName("Fu")
             .lastName("da Silva")
             .email("fulano@gmail.com")
+            .password("123456")
+            .build();
+    }
+
+    public static RegistrationRequest createPostRequestBodyWithInvalidEmailCreator() {
+        return RegistrationRequest.builder()
+            .firstName("Flano")
+            .lastName("da Silva")
+            .email("fulanogmail.com")
             .password("123456")
             .build();
     }

@@ -47,11 +47,7 @@ public class RegistrationService {
     private String baseUrl;
 
     public String register(RegistrationRequest request) {
-        boolean isValidEmail = emailValidator.test(request.getEmail());
-        if (!isValidEmail) {
-            throw new IllegalStateException("email not valid");
-        }
-        var token = appUserService.signUpUser(
+        final var token = appUserService.signUpUser(
             AppUser.builder()
                 .firstName(request.getFirstName())
                 .lastName(request.getLastName())
