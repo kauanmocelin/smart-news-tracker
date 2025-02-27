@@ -1,4 +1,4 @@
-package dev.kauanmocelin.springbootrestapi.appuser.request;
+package dev.kauanmocelin.springbootrestapi.appuser.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.*;

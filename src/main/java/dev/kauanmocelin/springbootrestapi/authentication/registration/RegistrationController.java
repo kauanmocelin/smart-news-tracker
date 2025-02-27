@@ -1,8 +1,8 @@
 package dev.kauanmocelin.springbootrestapi.authentication.registration;
 
-import dev.kauanmocelin.springbootrestapi.authentication.registration.request.LoginRequest;
-import dev.kauanmocelin.springbootrestapi.authentication.registration.request.LoginResponse;
-import dev.kauanmocelin.springbootrestapi.authentication.registration.request.RegistrationRequest;
+import dev.kauanmocelin.springbootrestapi.authentication.registration.dto.LoginRequest;
+import dev.kauanmocelin.springbootrestapi.authentication.registration.dto.LoginResponse;
+import dev.kauanmocelin.springbootrestapi.authentication.registration.dto.RegistrationRequest;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;

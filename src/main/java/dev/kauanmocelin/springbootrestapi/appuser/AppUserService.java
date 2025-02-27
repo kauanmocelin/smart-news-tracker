@@ -1,8 +1,8 @@
 package dev.kauanmocelin.springbootrestapi.appuser;
 
+import dev.kauanmocelin.springbootrestapi.appuser.dto.AppUserPutRequestBody;
+import dev.kauanmocelin.springbootrestapi.appuser.dto.AppUserResponseBody;
 import dev.kauanmocelin.springbootrestapi.appuser.mapper.AppUserMapper;
-import dev.kauanmocelin.springbootrestapi.appuser.request.AppUserPutRequestBody;
-import dev.kauanmocelin.springbootrestapi.appuser.response.AppUserResponseBody;
 import dev.kauanmocelin.springbootrestapi.authentication.registration.code.RegistrationCode;
 import dev.kauanmocelin.springbootrestapi.authentication.registration.code.RegistrationCodeService;
 import dev.kauanmocelin.springbootrestapi.common.exception.BadRequestException;

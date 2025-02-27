@@ -1,6 +1,6 @@
 package dev.kauanmocelin.springbootrestapi;
 
-import dev.kauanmocelin.springbootrestapi.authentication.registration.request.RegistrationRequest;
+import dev.kauanmocelin.springbootrestapi.authentication.registration.dto.RegistrationRequest;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import org.flywaydb.core.Flyway;

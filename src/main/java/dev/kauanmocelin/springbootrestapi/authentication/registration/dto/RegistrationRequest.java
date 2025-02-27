@@ -1,4 +1,4 @@
-package dev.kauanmocelin.springbootrestapi.authentication.registration.request;
+package dev.kauanmocelin.springbootrestapi.authentication.registration.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.Email;

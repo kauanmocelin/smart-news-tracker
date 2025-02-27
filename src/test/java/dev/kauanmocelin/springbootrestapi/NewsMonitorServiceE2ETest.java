@@ -1,6 +1,6 @@
 package dev.kauanmocelin.springbootrestapi;
 
-import dev.kauanmocelin.springbootrestapi.authentication.registration.request.LoginRequest;
+import dev.kauanmocelin.springbootrestapi.authentication.registration.dto.LoginRequest;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import org.junit.jupiter.api.BeforeEach;

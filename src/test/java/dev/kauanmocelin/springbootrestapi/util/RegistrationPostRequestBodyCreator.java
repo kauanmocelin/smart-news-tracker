@@ -1,6 +1,6 @@
 package dev.kauanmocelin.springbootrestapi.util;
 
-import dev.kauanmocelin.springbootrestapi.authentication.registration.request.RegistrationRequest;
+import dev.kauanmocelin.springbootrestapi.authentication.registration.dto.RegistrationRequest;
 
 public class RegistrationPostRequestBodyCreator {
 

@@ -1,8 +1,8 @@
 package dev.kauanmocelin.springbootrestapi.appuser.mapper;
 
 import dev.kauanmocelin.springbootrestapi.appuser.AppUser;
-import dev.kauanmocelin.springbootrestapi.appuser.request.AppUserPutRequestBody;
-import dev.kauanmocelin.springbootrestapi.appuser.response.AppUserResponseBody;
+import dev.kauanmocelin.springbootrestapi.appuser.dto.AppUserPutRequestBody;
+import dev.kauanmocelin.springbootrestapi.appuser.dto.AppUserResponseBody;
 import dev.kauanmocelin.springbootrestapi.appuser.role.Role;
 import dev.kauanmocelin.springbootrestapi.appuser.role.RoleType;
 import dev.kauanmocelin.springbootrestapi.news.NewsMonitor;

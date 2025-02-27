@@ -1,7 +1,7 @@
 package dev.kauanmocelin.springbootrestapi.appuser;
 
-import dev.kauanmocelin.springbootrestapi.appuser.request.AppUserPutRequestBody;
-import dev.kauanmocelin.springbootrestapi.appuser.response.AppUserResponseBody;
+import dev.kauanmocelin.springbootrestapi.appuser.dto.AppUserPutRequestBody;
+import dev.kauanmocelin.springbootrestapi.appuser.dto.AppUserResponseBody;
 import dev.kauanmocelin.springbootrestapi.util.AppUserCreator;
 import dev.kauanmocelin.springbootrestapi.util.CustomerPutRequestBodyCreator;
 import org.junit.jupiter.api.DisplayName;

@@ -1,6 +1,6 @@
 package dev.kauanmocelin.springbootrestapi.util;
 
-import dev.kauanmocelin.springbootrestapi.appuser.request.AppUserPutRequestBody;
+import dev.kauanmocelin.springbootrestapi.appuser.dto.AppUserPutRequestBody;
 
 public class CustomerPutRequestBodyCreator {
 

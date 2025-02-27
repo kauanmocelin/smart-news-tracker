@@ -1,4 +1,4 @@
-package dev.kauanmocelin.springbootrestapi.appuser.response;
+package dev.kauanmocelin.springbootrestapi.appuser.dto;
 
 import dev.kauanmocelin.springbootrestapi.appuser.role.RoleType;
 import lombok.Builder;

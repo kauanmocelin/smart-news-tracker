@@ -1,7 +1,7 @@
 package dev.kauanmocelin.springbootrestapi.appuser;
 
-import dev.kauanmocelin.springbootrestapi.appuser.request.AppUserPutRequestBody;
-import dev.kauanmocelin.springbootrestapi.appuser.response.AppUserResponseBody;
+import dev.kauanmocelin.springbootrestapi.appuser.dto.AppUserPutRequestBody;
+import dev.kauanmocelin.springbootrestapi.appuser.dto.AppUserResponseBody;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;

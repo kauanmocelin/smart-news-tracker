@@ -1,7 +1,7 @@
 package dev.kauanmocelin.springbootrestapi.util;
 
 import dev.kauanmocelin.springbootrestapi.appuser.AppUser;
-import dev.kauanmocelin.springbootrestapi.appuser.response.AppUserResponseBody;
+import dev.kauanmocelin.springbootrestapi.appuser.dto.AppUserResponseBody;
 
 import java.time.LocalDate;
 

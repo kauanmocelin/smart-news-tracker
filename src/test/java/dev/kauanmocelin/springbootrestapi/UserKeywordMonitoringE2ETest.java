@@ -1,7 +1,7 @@
 package dev.kauanmocelin.springbootrestapi;
 
-import dev.kauanmocelin.springbootrestapi.authentication.registration.request.LoginRequest;
-import dev.kauanmocelin.springbootrestapi.authentication.registration.request.RegistrationRequest;
+import dev.kauanmocelin.springbootrestapi.authentication.registration.dto.LoginRequest;
+import dev.kauanmocelin.springbootrestapi.authentication.registration.dto.RegistrationRequest;
 import dev.kauanmocelin.springbootrestapi.email.EmailService;
 import dev.kauanmocelin.springbootrestapi.news.MonitoringPeriod;
 import dev.kauanmocelin.springbootrestapi.news.request.KeywordRequest;
