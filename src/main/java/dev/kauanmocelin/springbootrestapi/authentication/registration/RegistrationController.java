@@ -6,9 +6,14 @@ import dev.kauanmocelin.springbootrestapi.authentication.registration.dto.Regist
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.logout.LogoutHandler;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -18,6 +23,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 public class RegistrationController {
 
     private final RegistrationService registrationService;
+    private final LogoutHandler logoutHandler;
 
     @PostMapping("/register")
     @Operation(summary = "Register new user", description = "Register new user", tags = {"authentication"})
@@ -55,5 +61,17 @@ public class RegistrationController {
     @PostMapping("/login")
     public ResponseEntity<LoginResponse> authenticate(@RequestBody @Valid LoginRequest request) {
         return ResponseEntity.ok(registrationService.login(request));
+    }
+
+    @Operation(summary = "User logout", description = "User logout", tags = {"authentication"})
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "User logged out successfully"),
+        @ApiResponse(responseCode = "403", description = "Invalid credentials")
+    })
+    @PostMapping("/logout")
+    public ResponseEntity<Void> authenticate(HttpServletRequest request, HttpServletResponse response, Authentication authentication) {
+        logoutHandler.logout(request, response, authentication);
+        SecurityContextHolder.clearContext();
+        return ResponseEntity.noContent().build();
     }
 }
