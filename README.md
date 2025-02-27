@@ -38,6 +38,11 @@ SmartNews Tracker is an API that allows users to monitor news based on specific 
 
 # Running
 
+1. generate a JWT secret key on [JwtSecret.com](https://jwtsecret.com/generate) with 32bytes
+2. for news service use [newsAPI](https://newsapi.org/) and get an api key 
+3. rename `.env.example` for `.env`
+4. fill variables `JWT_SECRET_KEY` and `NEWS_API_KEY` with values obtained in steps 1 and 2
+
 ```bash
 # clone repository
 git clone https://github.com/kauanmocelin/smart-news-tracker.git
