@@ -3,7 +3,7 @@ package dev.kauanmocelin.springbootrestapi.news;
 import dev.kauanmocelin.springbootrestapi.appuser.AuthenticatedUserService;
 import dev.kauanmocelin.springbootrestapi.news.client.NewsApiClient;
 import dev.kauanmocelin.springbootrestapi.news.client.response.NewsApiResponse;
-import dev.kauanmocelin.springbootrestapi.news.request.KeywordRequest;
+import dev.kauanmocelin.springbootrestapi.news.dto.KeywordRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

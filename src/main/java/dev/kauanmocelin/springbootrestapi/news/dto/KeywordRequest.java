@@ -1,4 +1,4 @@
-package dev.kauanmocelin.springbootrestapi.news.request;
+package dev.kauanmocelin.springbootrestapi.news.dto;
 
 import dev.kauanmocelin.springbootrestapi.news.MonitoringPeriod;
 import io.swagger.v3.oas.annotations.media.Schema;

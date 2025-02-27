@@ -1,7 +1,7 @@
 package dev.kauanmocelin.springbootrestapi.news;
 
 import dev.kauanmocelin.springbootrestapi.appuser.AuthenticatedUserService;
-import dev.kauanmocelin.springbootrestapi.news.request.KeywordRequest;
+import dev.kauanmocelin.springbootrestapi.news.dto.KeywordRequest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

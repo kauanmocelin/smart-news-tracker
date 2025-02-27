@@ -4,7 +4,7 @@ import dev.kauanmocelin.springbootrestapi.authentication.registration.dto.LoginR
 import dev.kauanmocelin.springbootrestapi.authentication.registration.dto.RegistrationRequest;
 import dev.kauanmocelin.springbootrestapi.email.EmailService;
 import dev.kauanmocelin.springbootrestapi.news.MonitoringPeriod;
-import dev.kauanmocelin.springbootrestapi.news.request.KeywordRequest;
+import dev.kauanmocelin.springbootrestapi.news.dto.KeywordRequest;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import org.flywaydb.core.Flyway;

@@ -101,12 +101,24 @@ public class RegistrationService {
         var user = appUserRepository.findByEmail(request.getUsername()).orElseThrow();
         final var jwtToken = jwtService.generateToken(user);
         final var refreshJwtToken = jwtService.generateRefreshToken(user);
-        //revokeAllUserTokens(user);
+        revokeAllUserTokens(user);
         saveUserToken(user, jwtToken);
         return LoginResponse.builder()
             .accessToken(jwtToken)
             .refreshToken(refreshJwtToken)
             .build();
+    }
+
+    private void revokeAllUserTokens(AppUser appUser) {
+        final var validTokens = tokenRepository.findAllValidTokensByUsers(appUser.getId());
+        if (validTokens.isEmpty()) {
+            return;
+        }
+        validTokens.forEach(token -> {
+            token.setExpired(true);
+            token.setRevoked(true);
+        });
+        tokenRepository.saveAll(validTokens);
     }
 
     private void saveUserToken(AppUser appUser, String jwtToken) {

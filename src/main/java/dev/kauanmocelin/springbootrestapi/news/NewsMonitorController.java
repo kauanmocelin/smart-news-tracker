@@ -1,7 +1,7 @@
 package dev.kauanmocelin.springbootrestapi.news;
 
 import dev.kauanmocelin.springbootrestapi.news.client.response.NewsApiResponse;
-import dev.kauanmocelin.springbootrestapi.news.request.KeywordRequest;
+import dev.kauanmocelin.springbootrestapi.news.dto.KeywordRequest;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;

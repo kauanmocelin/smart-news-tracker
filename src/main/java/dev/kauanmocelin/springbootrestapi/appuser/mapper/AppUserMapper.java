@@ -6,7 +6,7 @@ import dev.kauanmocelin.springbootrestapi.appuser.dto.AppUserResponseBody;
 import dev.kauanmocelin.springbootrestapi.appuser.role.Role;
 import dev.kauanmocelin.springbootrestapi.appuser.role.RoleType;
 import dev.kauanmocelin.springbootrestapi.news.NewsMonitor;
-import dev.kauanmocelin.springbootrestapi.news.request.KeywordRequest;
+import dev.kauanmocelin.springbootrestapi.news.dto.KeywordRequest;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
