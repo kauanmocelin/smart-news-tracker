@@ -13,8 +13,8 @@ import dev.kauanmocelin.springbootrestapi.authentication.registration.dto.Regist
 import dev.kauanmocelin.springbootrestapi.authentication.token.Token;
 import dev.kauanmocelin.springbootrestapi.authentication.token.TokenRepository;
 import dev.kauanmocelin.springbootrestapi.authentication.token.TokenType;
-import dev.kauanmocelin.springbootrestapi.common.security.JwtService;
 import dev.kauanmocelin.springbootrestapi.email.EmailSender;
+import dev.kauanmocelin.springbootrestapi.security.JwtService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.AuthenticationManager;

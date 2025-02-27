@@ -1,11 +1,8 @@
 spring:
   application:
     name: smart-news-tracker
-#  profiles:
-#    active: prod
   config:
     import: optional:file:.env[.properties]
-#    import: optional:file:.env[.properties], application-prod.yaml
   datasource:
     url: ${DB_URL}
     username: ${DB_USERNAME}
@@ -52,7 +49,6 @@ logging:
   level:
     root: INFO
     dev.kauanmocelin.springbootrestapi.*: INFO
-#    org.hibernate.orm.jdbc.bind: TRACE
   logback:
     rollingpolicy:
       file-name-pattern: ${logging.file.name}.%d{yyyy-MM-dd}.%i.gz

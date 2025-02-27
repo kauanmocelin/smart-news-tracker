@@ -2,7 +2,7 @@ package dev.kauanmocelin.springbootrestapi.authentication.registration;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import dev.kauanmocelin.springbootrestapi.authentication.registration.dto.RegistrationRequest;
-import dev.kauanmocelin.springbootrestapi.common.security.JwtAuthenticationFilter;
+import dev.kauanmocelin.springbootrestapi.security.JwtAuthenticationFilter;
 import dev.kauanmocelin.springbootrestapi.util.RegistrationPostRequestBodyCreator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

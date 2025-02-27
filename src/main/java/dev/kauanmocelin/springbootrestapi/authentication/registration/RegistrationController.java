@@ -6,6 +6,7 @@ import dev.kauanmocelin.springbootrestapi.authentication.registration.dto.Regist
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.security.SecurityRequirements;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
@@ -25,6 +26,7 @@ public class RegistrationController {
     private final RegistrationService registrationService;
     private final LogoutHandler logoutHandler;
 
+    @SecurityRequirements
     @PostMapping("/register")
     @Operation(summary = "Register new user", description = "Register new user", tags = {"authentication"})
     @ApiResponses(value = {
@@ -42,6 +44,7 @@ public class RegistrationController {
         return ResponseEntity.created(uri).body(registrationCode);
     }
 
+    @SecurityRequirements
     @Operation(summary = "Verify confirmation code", description = "Verify confirmation codeVerify confirmation code", tags = {"authentication"})
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "Confirmation code successfully verified"),
@@ -53,6 +56,7 @@ public class RegistrationController {
         return "Your account has confirmed successfully";
     }
 
+    @SecurityRequirements
     @Operation(summary = "User login", description = "User login", tags = {"authentication"})
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "User logged in successfully"),

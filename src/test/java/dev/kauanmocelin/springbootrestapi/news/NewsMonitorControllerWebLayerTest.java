@@ -1,8 +1,8 @@
 package dev.kauanmocelin.springbootrestapi.news;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import dev.kauanmocelin.springbootrestapi.common.security.JwtAuthenticationFilter;
 import dev.kauanmocelin.springbootrestapi.news.dto.KeywordRequest;
+import dev.kauanmocelin.springbootrestapi.security.JwtAuthenticationFilter;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

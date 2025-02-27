@@ -14,40 +14,35 @@ import io.swagger.v3.oas.annotations.servers.Server;
     info = @Info(
         contact = @Contact(
             name = "Kauan",
-            email = "kauan@gmail.com",
-            url = "http://kauan.dev"
+            email = "kauan@gmail.com"
         ),
-        description = "OpenApi documentation for Rest Api Springboot",
-        title = "OpenApi specification - Rest Api",
+        description = "OpenApi documentation for SmartNews Tracker",
+        title = "OpenApi specification - SmartNews Tracker Api",
         version = "1.0",
         license = @License(
             name = "MIT",
             url = "https://github.com/kauanmocelin/rest-api-springboot/blob/main/LICENSE"
-        ),
-        termsOfService = "http://Terms-of-service"
+        )
     ),
     servers = {
         @Server(
-            description = "Local ENV",
+            description = "Local Environment",
             url = "http://localhost:8080"
         ),
-        @Server(
-            description = "Local PROD",
-            url = "http://kauan-rest-api-springboot.dev"
-        )
     },
     security = {
         @SecurityRequirement(
-            name = "basicAuth"
+            name = "bearerAuth"
         )
     }
 )
 @SecurityScheme(
-    name = "basicAuth",
-    description = "Basic auth description",
-    scheme = "basic",
+    name = "bearerAuth",
+    description = "JWT Bearer Token Authentication",
+    scheme = "bearer",
     type = SecuritySchemeType.HTTP,
-    in = SecuritySchemeIn.HEADER
+    in = SecuritySchemeIn.HEADER,
+    bearerFormat = "JWT"
 )
 public class OpenApiConfiguration {
 }

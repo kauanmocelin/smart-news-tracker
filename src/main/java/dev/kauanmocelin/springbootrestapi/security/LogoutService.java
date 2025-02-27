@@ -1,4 +1,4 @@
-package dev.kauanmocelin.springbootrestapi.common.security;
+package dev.kauanmocelin.springbootrestapi.security;
 
 import dev.kauanmocelin.springbootrestapi.authentication.token.Token;
 import dev.kauanmocelin.springbootrestapi.authentication.token.TokenRepository;
