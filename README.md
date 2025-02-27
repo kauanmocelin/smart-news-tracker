@@ -25,11 +25,16 @@ SmartNews Tracker is an API that allows users to monitor news based on specific 
 
 # Features
 
-- User signup with email verification
-- User email verification flow (send verification link, verify user)
-- User login with JWT token/refresh token
-- User logout 
-- Users account can be managed by Admin
+- Authentication
+  - User signup with email verification
+  - User email verification flow (send verification link, verify user)
+  - User login with JWT token/refresh token
+  - User logout
+- Business
+  - Users accounts can be managed by admin
+  - User can register keyword for monitoring
+  - User receive scheduled emails summarizing ten most popular news monitored
+  - User can fetch ten most popular news with a keyword
 
 # Running
 

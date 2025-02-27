@@ -12,6 +12,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.FilterType;
 import org.springframework.http.MediaType;
+import org.springframework.security.web.authentication.logout.LogoutHandler;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -37,6 +38,9 @@ class RegistrationControllerWebLayerTest {
 
     @MockitoBean
     private RegistrationService registrationServiceMock;
+
+    @MockitoBean
+    private LogoutHandler logoutHandlerMock;
 
     @Autowired
     private ObjectMapper objectMapper;

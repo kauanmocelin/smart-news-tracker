@@ -52,7 +52,8 @@ class NewsMonitorServiceITTest {
         assertThat(fetchedNews).isNotNull();
         assertThat(fetchedNews.status()).isEqualTo("ok");
         assertThat(fetchedNews.totalResults()).isEqualTo(3);
-        assertThat(fetchedNews.newsArticleResponse()).size().isEqualTo(3);
+        assertThat(fetchedNews.newsArticleResponse())
+            .hasSize(3);
     }
 
     @Test
