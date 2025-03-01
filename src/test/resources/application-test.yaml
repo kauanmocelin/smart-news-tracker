@@ -6,10 +6,10 @@ spring:
         format_sql: true
 logging:
   level:
-    sql: INFO
-    org.hibernate.orm.jdbc.bind: INFO
-    org.springframework.test.context.jdbc: INFO
-    org.springframework.jdbc.datasource.init.jdbc: INFO
+    sql: OFF
+    org.hibernate.orm.jdbc.bind: OFF
+    org.springframework.test.context.jdbc: OFF
+    org.springframework.jdbc.datasource.init.jdbc: OFF
 news:
   api:
     url: "https://newsapi.org/v2"
