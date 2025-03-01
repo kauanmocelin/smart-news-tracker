@@ -34,7 +34,7 @@ import static org.hamcrest.Matchers.notNullValue;
 )
 @ActiveProfiles("test")
 @DisplayName("Tests for register keyword for monitoring flow end-to-end")
-class UserKeywordMonitoringE2ETest {
+class UserKeywordMonitoringE2EIT {
 
     @Container
     @ServiceConnection

@@ -29,7 +29,7 @@ import static org.hamcrest.Matchers.notNullValue;
 )
 @ActiveProfiles("test")
 @DisplayName("Tests for register/authentication flow end-to-end")
-class FullAuthenticationE2ETest {
+class FullAuthenticationE2EIT {
 
     @Container
     @ServiceConnection

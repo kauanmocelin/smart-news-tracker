@@ -23,7 +23,7 @@ import static org.mockito.Mockito.verify;
 @Testcontainers
 @ActiveProfiles("test")
 @DisplayName("Tests for News Monitor service")
-class NewsMonitorServiceITTest {
+class NewsMonitorServiceIT {
 
     @Autowired
     private NewsMonitorService newsMonitorService;
