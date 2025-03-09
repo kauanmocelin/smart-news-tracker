@@ -56,3 +56,8 @@ logging:
       total-size-cap: 50MB
       clean-history-on-start: true
       max-history: 7
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

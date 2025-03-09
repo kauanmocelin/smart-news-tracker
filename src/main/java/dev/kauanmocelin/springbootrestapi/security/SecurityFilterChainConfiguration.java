@@ -35,6 +35,7 @@ public class SecurityFilterChainConfiguration {
                 .requestMatchers("/api/v1/news-monitor/**").hasAnyAuthority("USER", "ADMIN")
                 .requestMatchers("/v3/api-docs/**").permitAll()
                 .requestMatchers("/swagger-ui/**").permitAll()
+                .requestMatchers("/actuator/**").permitAll()
                 .anyRequest().authenticated()
             )
             .sessionManagement(sessionManagement -> sessionManagement
