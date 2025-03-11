@@ -57,7 +57,7 @@ docker-compose up
 ./mvnw spring-boot:run
 
 # access the api documentation
-http://localhost:8080/swagger-ui.html 
+http://localhost:8080/swagger-ui/index.html 
 ```
 
 # Author
