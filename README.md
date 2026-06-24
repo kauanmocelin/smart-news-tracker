@@ -1,18 +1,13 @@
 # SmartNews Tracker
 
-[![NPM](https://img.shields.io/npm/l/react)](https://github.com/kauanmocelin/rest-api-springboot/blob/main/LICENSE)
-
-# About
-
+## Overview
 SmartNews Tracker is an API that allows users to monitor news based on specific keywords. The system periodically queries a news API and sends email alerts whenever new articles matching the keywords are found.
 
-# Prerequisites
-
+## Prerequisites
 - Java 21
 - Docker
 
-# Technologies
-
+## Technologies
 - Java 21
 - Spring Boot/Data JPA/Security
 - Flyway
@@ -23,8 +18,7 @@ SmartNews Tracker is an API that allows users to monitor news based on specific 
 - Docker
 - SpringDoc - Open API 3
 
-# Features
-
+## Features
 - Authentication
   - User signup with email verification
   - User email verification flow (send verification link, verify user)
@@ -36,13 +30,21 @@ SmartNews Tracker is an API that allows users to monitor news based on specific 
   - User receive scheduled emails summarizing ten most popular news monitored
   - User can fetch ten most popular news with a keyword
 
-# Running
+## Running
 
-1. generate a JWT secret key on [JwtSecret.com](https://jwtsecret.com/generate) with 32bytes
-2. for news service use [newsAPI](https://newsapi.org/) and get an api key 
-3. rename `.env.example` for `.env`
-4. fill variables `JWT_SECRET_KEY` and `NEWS_API_KEY` with values obtained in steps 1 and 2
+### 1. Generate JWT secret
+Generate a 32-byte secret key at https://jwtsecret.com/generate
 
+### 2. Get News API key
+Create an API key at https://newsapi.org/
+
+### 3. Configure environment variables
+Rename `.env.example` to `.env` and set:
+
+- `JWT_SECRET_KEY`
+- `NEWS_API_KEY`
+
+### 4. Run the application
 ```bash
 # clone repository
 git clone https://github.com/kauanmocelin/smart-news-tracker.git
@@ -60,8 +62,13 @@ docker-compose up
 http://localhost:8080/swagger-ui/index.html 
 ```
 
-# Author
+## Contributing
+Contributions are welcome. If you have suggestions, bug reports, or feature requests, please open an issue or submit a pull request.
 
+## License
+This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for more details.
+
+## Author
 **Kauan Mocelin**
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/kauanmocelin/)
