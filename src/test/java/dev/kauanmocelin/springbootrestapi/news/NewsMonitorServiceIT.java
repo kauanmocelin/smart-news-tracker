@@ -6,12 +6,15 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
+import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
+import org.testcontainers.utility.DockerImageName;
 import org.wiremock.integrations.testcontainers.WireMockContainer;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -37,6 +40,12 @@ class NewsMonitorServiceIT {
     @Container
     static WireMockContainer wiremockServer = new WireMockContainer("wiremock/wiremock:2.35.1-1")
         .withMappingFromResource("wiremock-mappings/news-api-response.json");
+
+    @Container
+    @ServiceConnection
+    private static final PostgreSQLContainer<?> postgresSqlContainer = new PostgreSQLContainer<>(DockerImageName.parse(
+        "postgres:15.10"
+    ));
 
     @DynamicPropertySource
     static void configureProperties(DynamicPropertyRegistry registry) {

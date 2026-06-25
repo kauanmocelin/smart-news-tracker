@@ -44,23 +44,23 @@ Rename `.env.example` to `.env` and set:
 - `JWT_SECRET_KEY`
 - `NEWS_API_KEY`
 
-### 4. Run the application
-```bash
-# clone repository
-git clone https://github.com/kauanmocelin/smart-news-tracker.git
-
-# enter the project folder
-cd smart-news-tracker
-
-# run docker container
-docker-compose up
-
-# execute the project
-./mvnw spring-boot:run
-
-# access the api documentation
-http://localhost:8080/swagger-ui/index.html 
-```
+### 4. Build and Running Locally from docker
+1. Clone the repository to your local machine:
+    ```
+    git clone https://github.com/kauanmocelin/smart-news-tracker.git
+    ```
+2. Go to the project directory:
+    ```
+    cd smart-news-tracker
+    ```
+3. Starting with a script that builds and starts the REST API:
+    ```
+    scripts/run.sh
+    ```
+4. Access the api documentation:
+    ```
+    http://localhost:8080/swagger-ui/index.html
+    ```
 
 ## Contributing
 Contributions are welcome. If you have suggestions, bug reports, or feature requests, please open an issue or submit a pull request.

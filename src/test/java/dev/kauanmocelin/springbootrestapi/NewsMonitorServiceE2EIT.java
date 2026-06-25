@@ -8,12 +8,15 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
+import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
 import org.springframework.http.HttpStatus;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
+import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
+import org.testcontainers.utility.DockerImageName;
 import org.wiremock.integrations.testcontainers.WireMockContainer;
 
 import static io.restassured.RestAssured.given;
@@ -33,6 +36,12 @@ class NewsMonitorServiceE2ETest {
     @Container
     static WireMockContainer wiremockServer = new WireMockContainer("wiremock/wiremock:2.35.1-1")
         .withMappingFromResource("wiremock-mappings/news-api-response.json");
+
+    @Container
+    @ServiceConnection
+    private static final PostgreSQLContainer<?> postgresSqlContainer = new PostgreSQLContainer<>(DockerImageName.parse(
+        "postgres:15.10"
+    ));
 
     @DynamicPropertySource
     static void configureProperties(DynamicPropertyRegistry registry) {

@@ -137,7 +137,6 @@
     </dependencies>
 
     <build>
-        <finalName>smartnewstracker-aws-deployment</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

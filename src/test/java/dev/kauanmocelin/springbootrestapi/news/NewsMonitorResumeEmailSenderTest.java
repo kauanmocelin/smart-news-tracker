@@ -9,7 +9,11 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
+import org.testcontainers.containers.PostgreSQLContainer;
+import org.testcontainers.junit.jupiter.Container;
+import org.testcontainers.utility.DockerImageName;
 import org.thymeleaf.TemplateEngine;
 
 import java.util.List;
@@ -34,6 +38,12 @@ class NewsMonitorResumeEmailSenderTest {
 
     @Autowired
     private NewsMonitorResumeEmailSender newsMonitorResumeEmailSender;
+
+    @Container
+    @ServiceConnection
+    private static final PostgreSQLContainer<?> postgresSqlContainer = new PostgreSQLContainer<>(DockerImageName.parse(
+        "postgres:15.10"
+    ));
 
     @Test
     @DisplayName("Should send an email when news are fetched from api")

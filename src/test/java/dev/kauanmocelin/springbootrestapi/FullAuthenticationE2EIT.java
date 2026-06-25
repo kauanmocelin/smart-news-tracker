@@ -14,6 +14,9 @@ import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
 import org.springframework.http.HttpStatus;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.DynamicPropertyRegistry;
+import org.springframework.test.context.DynamicPropertySource;
+import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
@@ -36,6 +39,23 @@ class FullAuthenticationE2EIT {
     private static final PostgreSQLContainer<?> postgresSqlContainer = new PostgreSQLContainer<>(DockerImageName.parse(
         "postgres:15.10"
     ));
+
+    @Container
+    static GenericContainer<?> mailDevContainer =
+        new GenericContainer<>(DockerImageName.parse("maildev/maildev:latest"))
+            .withExposedPorts(1025, 1080);
+
+    @DynamicPropertySource
+    static void mailProperties(DynamicPropertyRegistry registry) {
+
+        registry.add("spring.mail.host", mailDevContainer::getHost);
+
+        registry.add("spring.mail.port",
+            () -> mailDevContainer.getMappedPort(1025));
+
+        registry.add("spring.mail.username", () -> "admin@newsmonitoring.com");
+        registry.add("spring.mail.password", () -> "hello");
+    }
 
     @LocalServerPort
     private int port;
