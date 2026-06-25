@@ -3,10 +3,6 @@
 ## Overview
 SmartNews Tracker is an API that allows users to monitor news based on specific keywords. The system periodically queries a news API and sends email alerts whenever new articles matching the keywords are found.
 
-## Prerequisites
-- Java 21
-- Docker
-
 ## Technologies
 - Java 21
 - Spring Boot/Data JPA/Security
@@ -30,21 +26,25 @@ SmartNews Tracker is an API that allows users to monitor news based on specific 
   - User receive scheduled emails summarizing ten most popular news monitored
   - User can fetch ten most popular news with a keyword
 
-## Running
+## Getting Started
 
-### 1. Generate JWT secret
+### Prerequisites
+- Java 21
+- Docker
+
+### Generate JWT secret
 Generate a 32-byte secret key at https://jwtsecret.com/generate
 
-### 2. Get News API key
+### Get News API key
 Create an API key at https://newsapi.org/
 
-### 3. Configure environment variables
+### Configure environment variables
 Rename `.env.example` to `.env` and set:
 
 - `JWT_SECRET_KEY`
 - `NEWS_API_KEY`
 
-### 4. Build and Running Locally from docker
+### Build and Running Locally from docker
 1. Clone the repository to your local machine:
     ```
     git clone https://github.com/kauanmocelin/smart-news-tracker.git
