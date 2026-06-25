@@ -62,6 +62,9 @@ Rename `.env.example` to `.env` and set:
     http://localhost:8080/swagger-ui/index.html
     ```
 
+### Running from docker image
+Please follow the instructions at the [docker hub repository.](https://hub.docker.com/u/kauanmocelin/smartnewstracker)
+
 ## Contributing
 Contributions are welcome. If you have suggestions, bug reports, or feature requests, please open an issue or submit a pull request.
 
