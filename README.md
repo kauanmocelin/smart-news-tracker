@@ -63,7 +63,7 @@ Rename `.env.example` to `.env` and set:
     ```
 
 ### Running from docker image
-Please follow the instructions at the [docker hub repository.](https://hub.docker.com/u/kauanmocelin/smartnewstracker)
+Please follow the instructions at the [docker hub repository.](https://hub.docker.com/r/kauanmocelin/smartnewstracker)
 
 ## Contributing
 Contributions are welcome. If you have suggestions, bug reports, or feature requests, please open an issue or submit a pull request.
